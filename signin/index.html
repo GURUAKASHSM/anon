@@ -23,7 +23,17 @@
 
 
     <div class="main">
-
+       <section class="allready-signin" style="display: none;">
+        <div class="container">
+            <br>
+            <h9 class="message"></h9>
+            <button class="js-continue" onclick="window.location.href='/Ecom/home'">Continue</button>
+            <button class="new-signin"onclick="document.querySelector('.sign-in').style.display = 'block';document.querySelector('.allready-signin').style.display = 'none'">SignIn</button> 
+            <br>
+            <br>
+        </div>
+       </section>
+       <br>
    
         <!-- Sing in  Form -->
         <section class="sign-in">
@@ -82,7 +92,6 @@
 
 
 
-<script src="./script.js"></script> 
 
    
 

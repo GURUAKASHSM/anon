@@ -1,3 +1,18 @@
+function checkforLocal(){
+  const storedData = localStorage.getItem("userdata");
+
+if (storedData !== null) {
+ document.querySelector('.allready-signin').style.display = "block";
+  const retrievedUserData = JSON.parse(storedData);
+  
+  if (retrievedUserData.token !== "") {
+
+    document.querySelector('.message').innerHTML = `Did you want to continue with ${retrievedUserData.username}`;
+  } 
+}
+}
+checkforLocal()
+
 document.getElementById("signin-button").addEventListener("click", function (event) {
     const rememberMeCheckbox = document.getElementById('remember-me');
     event.preventDefault();
@@ -29,13 +44,18 @@ document.getElementById("signin-button").addEventListener("click", function (eve
                 showToast("Login Successfull","Success",3);
                 setTimeout(()=>{
                     if (rememberMeCheckbox.checked) {
-                        showToast("Login failed. Please check your credentials.",1); 
-                        localStorage.setItem('token', `${data.token}`);
-                        window.location.href = `../home/index.html`;
+                        showToast("Login failed. Please check your credentials.",1);
+                        const userData = {
+                          'token':data.token,
+                          'username':formData.email
+                        }
+                        const jsonString = JSON.stringify(userData); 
+                        localStorage.setItem('userdata', `${jsonString}`);
+                        window.location.href = `/Ecom/home/`;
                       } else {
                         showToast("Login failed. Please check your credentials.",1); 
                         localStorage.setItem('token', `${data.token}`);
-                        window.location.href = `../home/index.html/?token=${data.token}`;
+                        window.location.href = `/Ecom/home/?token=${data.token}`;
                       }
                 },1000);
 
@@ -55,7 +75,7 @@ document.getElementById("signin-button").addEventListener("click", function (eve
 });
 
  
-let togleEyeforImage = true
+var togleEyeforImage = true
  function togleEye() {
     var passwordInput = document.getElementById('password');
     var eyeIcon = document.getElementById('eye-icon');

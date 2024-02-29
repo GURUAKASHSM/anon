@@ -681,3 +681,52 @@ label.valid {
 }
 
 
+.allready-signin {
+  display: flex;
+}
+
+.container {
+  display: flex;
+  padding: 20px;
+ align-items: center;
+}
+
+.message {
+  margin-bottom: 5px;
+  padding-right: 50px;
+  font-size: 15px;
+  margin-left: 20px;
+}
+
+.js-continue{
+  padding: 10px 20px;
+  margin: 5px;
+  display: flex;
+  text-decoration: none;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.new-signin {
+  padding: 10px 20px;
+  margin: 5px;
+  display: flex;
+  text-decoration: none;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 30px;
+}
+
+
+
+
+.new-signin {
+  background-color: #e74c3c;
+}
+
+
