@@ -1,53 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>SignUP</title>
-    <link rel="shortcut icon" href="assests/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="./assets/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Create Customer</h1>
-    <form id="customerForm">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
 
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email" required>
+    <div class="main">
 
-        <label for="age">Age:</label>
-        <input type="text" id="age" name="age" required>
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Sign up</h2>
+                        <form method="POST" class="register-form" id="register-form">
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="name" id="name" oninput="DisplaySee()" placeholder="Your Name"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="email"><i class="zmdi zmdi-email"></i></label>
+                                <input type="email" name="email" id="email"  oninput="DisplaySee()" placeholder="Your Email"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="pass" id="password" oninput="DisplayDontSee()" placeholder="Password"/>
+                                <button type="button" id="toggle-password" onclick="togleEye()">
+                                    <i id="eye-icon" class="zmdi zmdi-eye"></i>
+                                    <i id="eye-icon-off" class="zmdi zmdi-eye-off"></i>
+                                </button>
+                            </div>
+                            <div class="form-group">
+                                <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                                <input type="password" name="re_pass" id="re_pass" oninput="DisplayDontSee()" placeholder="Repeat your password"/>
+                                <button type="button" id="toggle-password" onclick="toglesignupEye()">
+                                    <i id="eye-icon" class="zmdi zmdi-eye"></i>
+                                    <i id="eye-icon-off" class="zmdi zmdi-eye-off"></i>
+                                </button>
+                            </div>
+                            <div class="form-group">
+                                <label for="phoneno"><i class="zmdi zmdi-phone"></i></label>
+                                <input type="number" name="phone" id="phone" oninput="DisplaySee()"  placeholder="Mobile Number"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="address"><i class="zmdi zmdi-home"></i></label>
+                                <input type="address" name="address" id="address"  oninput="DisplaySee()" placeholder="Your Delivery address"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="https://tobegiftboxes.com/wp-content/uploads/2021/07/TO-BE-eCommerce-Website-Terms-of-Service-eCommerce-Terms-and-Conditions-Template.pdf" target="_blank" class="term-service">Terms of service</a></label>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="click" name="signup" id="customerForm" class="form-submit"  value="Register"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="images/signup-image.jpg" class="signup-image-src" alt="sing up image"></figure>
+                        <a href="/anon/signin" class="signup-image-link">I am already member</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <label for="phonenumber">Phone no:</label>
-        <input type="text" id="phonenumber" name="phonenumber" required>
+    </div>
+    <div class="toast-container" style="display: none;">
+        <img class="js-toast-img" src="./assets/dontsee.webp" height="10px" width="10px">
+        <span class="js-toast-title"></span>
+        <span class="js-toast-content"></span>
+    </div>
 
-        <label for="password">Password:</label>
-        <input type="text" id="password" name="password" required>
-
-        <label for="confirmpassword">Confirm Password:</label>
-        <input type="text" id="confirmpassword" name="confirmpassword" required>
-        <h3>Address:</h3>
-        <label for="firstname">First Name:</label>
-        <input type="text" id="firstname" name="firstname" required>
-
-        <label for="lastname">Last Name:</label>
-        <input type="text" id="lastname" name="lastname" required>
-
-        <label for="houseno">House No:</label>
-        <input type="text" id="houseno" name="houseno" required>
-
-        <label for="streetname">Street Name:</label>
-        <input type="text" id="streetname" name="streetname" required>
-
-        <label for="city">City:</label>
-        <input type="text" id="city" name="city" required>
-
-        <label for="pincode">Pincode:</label>
-        <input type="text" id="pincode" name="pincode" required>
-
-       <center> <button type="submit">Create Profile</button> </center>
-    </form>
-
+    <!-- JS -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/main.js"></script>
     <script src="./assets/script.js"></script>
-    
 </body>
 </html>
