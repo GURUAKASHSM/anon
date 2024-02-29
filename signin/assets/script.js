@@ -13,6 +13,11 @@ if (storedData !== null) {
 }
 checkforLocal()
 
+function validateEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
 document.getElementById("signin-button").addEventListener("click", function (event) {
     const rememberMeCheckbox = document.getElementById('remember-me');
     event.preventDefault();
@@ -30,6 +35,10 @@ document.getElementById("signin-button").addEventListener("click", function (eve
         showToast("Please Enter your Password","Info",1); 
         return
     }
+    if(!validateEmail(formData.email)){
+      showToast("Please Enter a Valid Email","Info",1); 
+        return
+    }
     // Send a POST request to your Go backend
     fetch("http://localhost:8080/login", {
         method: "POST",
@@ -42,21 +51,22 @@ document.getElementById("signin-button").addEventListener("click", function (eve
         .then(data => {
             if (data.token) {
                 showToast("Login Successfull","Success",3);
+                
                 setTimeout(()=>{
                     if (rememberMeCheckbox.checked) {
-                        showToast("Login failed. Please check your credentials.",1);
                         const userData = {
                           'token':data.token,
                           'username':formData.email
                         }
                         const jsonString = JSON.stringify(userData); 
                         localStorage.setItem('userdata', `${jsonString}`);
-                        window.location.href = `/Ecom/home/`;
+                        window.location.href = `/anon/home/`;
                       } else {
-                        showToast("Login failed. Please check your credentials.",1); 
                         localStorage.setItem('token', `${data.token}`);
-                        window.location.href = `/Ecom/home/?token=${data.token}`;
+                        window.location.href = `/anon/home/?token=${data.token}`;
                       }
+                      document.getElementById("email").value= '';
+                      document.getElementById("password").value = "";
                 },1000);
 
                 
@@ -65,12 +75,11 @@ document.getElementById("signin-button").addEventListener("click", function (eve
                 console.log("Wrong Pass")
                 document.querySelector('.js-image').src = './images/wrongpassword.avif'
                 event.preventDefault(); 
-                showToast("Login failed. Please check your credentials.","Danger",1); 
+                showToast("Login failed. Please check your credentials.","Danger",0); 
             }
         })
         .catch(error => {
-          
-            alert("Error in: " + error.message);
+          showToast(error.message,"Danger",0);
         });
 });
 
