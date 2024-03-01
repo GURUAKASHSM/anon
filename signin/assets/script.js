@@ -178,6 +178,7 @@ let SigninUser = (token) => {
           }
           const jsonString = JSON.stringify(userData);
           localStorage.setItem('userdata', `${jsonString}`);
+         
           window.location.href = `/anon/home/`;
         } else {
           localStorage.setItem('token', `${data.token}`);
@@ -185,6 +186,7 @@ let SigninUser = (token) => {
         }
         document.getElementById("email").value = '';
         document.getElementById("password").value = "";
+        localStorage.removeItem('signindata');
       }, 1000);
     })
     .catch((error) => {
