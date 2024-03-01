@@ -1,8 +1,5 @@
 document.getElementById("customerForm").addEventListener("click", function (event) {
     event.preventDefault();
-    console.log("Clicked")
-
-    // Create a JSON object from the form data
     const formData = {
         name: document.getElementById("name").value,
         email: document.getElementById("email").value,
@@ -11,9 +8,16 @@ document.getElementById("customerForm").addEventListener("click", function (even
         confirmpassword: document.getElementById("re_pass").value,
         address: document.getElementById("address").value,
     };
+    // Create a JSON object from the form data
 
-    if(formData.name.trim() === "" ||formData.email.trim() === "" || formData.password.trim() === "" || formData.confirmpassword.trim()===""||formData.address.trim() === ""){
-        showToast("Please fill all feilds before submit", "Info", 3)
+
+
+    if (formData.name.trim() === "" || formData.email.trim() === "" || formData.password.trim() === "" || formData.confirmpassword.trim() === "" || formData.address.trim() === "") {
+        showToast("Please fill all feilds before submit", "Info", 1)
+        return
+    }
+    if (formData.password.trim().length <= 6 && formData.confirmpassword.trim().length <=6) {
+        showToast("Password must be greater than 6 chracters", "Danger", 0)
         return
     }
     if (formData.password != formData.confirmpassword && formData.password.trim() !== "" && formData.confirmpassword.trim() !== "") {
@@ -44,19 +48,8 @@ document.getElementById("customerForm").addEventListener("click", function (even
 
         .then(data => {
             if (data === 1) {
+                RegisterUser();
                 // Redirect to /signin if the response is true
-                showToast("Sign up Successfull", "Success", 3)
-                setTimeout(() => {
-                    document.getElementById("name").value = ''
-                    document.getElementById("email").value = ''
-                    document.getElementById("phone").value = ''
-                    document.getElementById("password").value = ''
-                    document.getElementById("re_pass").value = ''
-                    document.getElementById("address").value = ''
-                    window.location.href = "/anon/signin";
-
-                }, 1000);
-
             }
             else if (data === 0) {
                 // Handle other responses here, e.g. show an error message
@@ -84,7 +77,7 @@ document.getElementById("customerForm").addEventListener("click", function (even
 
 
 var togleEyeforImage = true
-function togleEye() {
+export function togleEye() {
     var passwordInput = document.getElementById('password');
     var eyeIcon = document.getElementById('eye-icon');
     if (togleEyeforImage == true) {
@@ -102,7 +95,7 @@ function togleEye() {
 
 
 var toglesignupEyeforImage = true
-function toglesignupEye() {
+export function toglesignupEye() {
     var passwordInput = document.getElementById('re_pass');
     var eyeIcon = document.getElementById('eye-icon');
     if (toglesignupEyeforImage == true) {
@@ -119,11 +112,11 @@ function toglesignupEye() {
 };
 
 
-function DisplayDontSee() {
+export function DisplayDontSee() {
     console.log("Dont see")
     document.querySelector('.signup-image-src').src = './assets/dontsee.webp'
 }
-function DisplaySee() {
+export function DisplaySee() {
     document.querySelector('.signup-image-src').src = './images/typing.png'
 
 }
@@ -190,11 +183,81 @@ function findNumberLength(number) {
     return length;
 }
 function isUsernameValid(username) {
-    // Use a regular expression to check if the username contains only letters
-    const lettersOnlyRegex = /^[a-zA-Z]+$/;
-
-    // Test the username against the regular expression
-    const isValid = lettersOnlyRegex.test(username);
-
+    const lettersAndSpacesRegex = /^[a-zA-Z ]+$/;
+    const isValid = lettersAndSpacesRegex.test(username);
     return isValid;
+}
+
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
+import { getDatabase, ref, set, get, child, update, remove, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Can Get from Firebase Settings ==> SDN
+const firebaseConfig = {
+    apiKey: "AIzaSyCBQSAtCbq6-QWo0UCU2R1G4t-f5OQKw1k",
+    authDomain: "avian-pact-378003.firebaseapp.com",
+    databaseURL: "https://avian-pact-378003-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "avian-pact-378003",
+    storageBucket: "avian-pact-378003.appspot.com",
+    messagingSenderId: "960981261075",
+    appId: "1:960981261075:web:0eea8a286549efc5f058e6",
+    measurementId: "G-LPBMBH2TFM"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const db = getDatabase()
+const auth = getAuth(app)
+
+let RegisterUser = evt => {
+    // evt.preventDefault(); // (Optional) Prevents the default form submission behavior
+    const formData = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        phonenumber: parseInt(document.getElementById("phone").value),
+        password: document.getElementById("password").value,
+        confirmpassword: document.getElementById("re_pass").value,
+        address: document.getElementById("address").value,
+    };
+
+    // Creating a new user with email and password
+    createUserWithEmailAndPassword(auth, formData.email, formData.password)
+        .then((credentials) => {
+            set(ref(db, "LoginCredentials/" + formData.name), {
+                UserName: formData.name,
+                Email: formData.email,
+                Phone_No: formData.phonenumber,
+
+            })
+                .then(() => {
+                    showToast("Sign up Successfull", "Success", 3)
+                    setTimeout(() => {
+                        document.getElementById("name").value = ''
+                        document.getElementById("email").value = ''
+                        document.getElementById("phone").value = ''
+                        document.getElementById("password").value = ''
+                        document.getElementById("re_pass").value = ''
+                        document.getElementById("address").value = ''
+                        localStorage.removeItem('signupdata');
+                        window.location.href = "/anon/signin";
+    
+                    }, 1000);
+                })
+                .catch((error) => {
+                    showToast(error,"Error",0)
+                });
+        })
+        .catch((error) => {
+        
+            showToast(error.message,"Error",0);
+        });
+
+
+        
 }
