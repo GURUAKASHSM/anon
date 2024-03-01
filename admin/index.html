@@ -1,154 +1,120 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Admin Login</title>
-    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="./assets/style.css">
+	<title>Login V1</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
 </head>
-
-
 <body>
-    <header>
-        <h1>Admin</h1>
-    </header>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="images/img-01.png" alt="IMG">
+				</div>
 
-    <main>
-        <form id="login-form">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
+				<form class="login100-form validate-form">
+					<span class="login100-form-title">
+						Admin Login
+					</span>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<input class="input100 email" type="text" name="email" placeholder="Email">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
 
-            <button type="submit">Login</button>
-        </form>
-        <center>
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input class="input100 password" type="password" name="pass" placeholder="Password">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
 
+					
+					<div class="wrap-input100 validate-input" data-validate = "TOTP is required: 12xxxxx">
+						<input class="input100 totp" type="text" name="email" placeholder="TOTP">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i  class="fas fa-key" aria-hidden="true"></i>
+						</span>
+					</div>
 
-
-
-
-
-            <div class="options">
-                <button id="get-all-data">Get All Customer Data</button>
-                <button id="get-inventory">Get Inventory Data</button>
-                <button id="get-seller">Get Seller Data</button>
-                <button id="create-seller-button">Create Seller</button>
-                <button id="feedback-button">Feedbacks</a></button>
-                <br>
-                <br>
-                <br>
-                <button id="edit-button">Edit</a></button>
-                <button id="delete-button">Delete</button>
-                <br>
-                <br>
-
-
-            </div>
-        </center>
-        <div id="result-container">
-            <h2>Result:</h2>
-            <div id="data-list"></div>
-        </div>
-
-        <div id="feedback-form-container" style="display: none;" <div class="feedback-form" ">
-            <h1>Feedback</h1>
-            <br>
-            <div class=" role-options">
-            <button id="sellerButton">Seller</button>
-            <button id="customerButton">Customer</button>
-        </div>
-        <center>
-            <div id="feedbackContainer">
-                <!-- Feedback data will be displayed here -->
-            </div>
-        </center>
-        </div>
-        </div>
-
-        <div id="delete-form-container" style="display: none;">
-            <h1>Delete Data</h1>
-            <form id="delete-form">
-                <label for="collection">Select Collection:</label>
-                <select id="collection" name="collection">
-                    <option value="customer">Customer</option>
-                    <option value="inventory">Inventory</option>
-                    <option value="seller">Seller</option>
-                </select>
-                <label id="delete-by-label" for="id">Delete by:</label>
-                <input type="text" id="id" name="id" required>
-                <button type="submit">Delete User</button>
-            </form>
-        </div>
-
-        <!-- Create Seller Form (Initially hidden) -->
-        <div id="create-seller-form" style="display: none;">
-            <h2>Create Seller</h2>
-            <form id="seller-form">
-                <label for="seller-name">Seller Name:</label>
-                <input type="text" id="seller-name" name="seller-name" required>
-
-                <label for="seller-email">Seller Email:</label>
-                <input type="text" id="seller-email" name="seller-email" required>
-
-                <label for="seller-password">Password:</label>
-                <input type="text" id="seller-password" name="seller-password" required>
-
-                <label for="seller-confirm-password">Confirm Password:</label>
-                <input type="text" id="seller-confirm-password" name="seller-confirm-password" required>
-
-                <label for="seller-phone">Phone No:</label>
-                <input type="text" id="seller-phone" name="seller-phone" required>
-
-                <label for="seller-address">Address:</label>
-                <textarea id="seller-address" name="seller-address" rows="4" required></textarea>
-                <br>
-                <br>
-                <button type="submit">Create Seller</button>
-            </form>
-        </div>
+					
 
 
-        <div id="update-form-admin" style="display: none;">
-            <h2>Update Data:</h2>
-            <br>
-            <form id="update-form">
-                <label for="updatecollection">Select Collection:</label>
-                <select id="updatecollection" name="updatecollection">
-                    <option value="customer">Customer</option>
-                    <option value="inventory">Inventory</option>
-                    <option value="seller">Seller</option>
-                </select>
-                <br>
-                <br>
-                <label for="idname">IdName:</label>
-                <input type="text" id="idname" name="idname" required><br>
-                <br>
-                <label for="field">Field:</label>
-                <select id="field" name="field">
-                    <!-- Options will be dynamically updated based on the selected collection -->
-                </select>
-                <br>
-                <br>
-                <label for="newvalue">New Value:</label>
-                <input type="text" id="newvalue" name="newvalue" required><br>
-                <br>
+					
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" type="click">
+							Login
+						</button>
+					</div>
 
-                <button type="submit">Update</button>
-            </form>
-            <div id="result">
-                <!-- Result will be displayed here -->
-            </div>
-        </div>
+					<div class="text-center p-t-12" onclick="displayToast();">
+						<span class="txt1">
+							Forgot
+						</span>
+						<a class="txt2" href="#">
+							Username / Password?
+						</a>
+					</div>
 
-    </main>
+					<div class="text-center p-t-136">
+						<a class="txt2" href="#">
+							<p class="ip"></p>
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="toast-container" style="display: none;">
+        <img class="js-toast-img" src="./assets/dontsee.webp" height="10px" width="10px">
+        <span class="js-toast-title"></span>
+        <span class="js-toast-content"></span>
+    </div>
 
-    <footer>
-        <center>
-            <p>&copy; 2023 Admin Panel</p>
-        </center>
-    </footer>
-    <script src="./assets/script.js">    </script>
+	
+
+	
+<!--===============================================================================================-->	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+	<script type="module" src="./assets/index.js"></script>
+
+</body>
+</html>
