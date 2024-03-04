@@ -5,7 +5,277 @@
 
 <head>
   <meta charset="utf-8" />
+  <style>
+    /* Injected by five-server */
+    /*[data-highlight="true"] {
+    border: 1px rgb(90,170,255) solid !important;
+    background-color: rgba(155,215,255,0.5);
+    animation: fadeOutHighlight 1s forwards 0.5s;
+  }
+  img[data-highlight="true"] {
+    filter: sepia(100%) hue-rotate(180deg) saturate(200%);
+    animation: fadeOutHighlightIMG 0.5s forwards 0.5s;
+  }*/
+    @keyframes fadeOutHighlight {
+      from {
+        background-color: rgba(155, 215, 255, 0.5);
+      }
+
+      to {
+        background-color: rgba(155, 215, 255, 0);
+      }
+    }
+
+    @keyframes fadeOutHighlightIMG {
+      0% {
+        filter: sepia(100%) hue-rotate(180deg) saturate(200%);
+      }
+
+      33% {
+        filter: sepia(66%) hue-rotate(180deg) saturate(100%);
+      }
+
+      50% {
+        filter: sepia(50%) hue-rotate(90deg) saturate(50%);
+      }
+
+      66% {
+        filter: sepia(33%) hue-rotate(0deg) saturate(100%);
+      }
+
+      100% {
+        filter: sepia(0%) hue-rotate(0deg) saturate(100%);
+      }
+    }
+
+    @keyframes fiveserverInfoPopup {
+      0% {
+        top: -40px;
+      }
+
+      15% {
+        top: 4px;
+      }
+
+      85% {
+        top: 4px;
+      }
+
+      100% {
+        top: -40px;
+      }
+    }
+
+    /*smaller*/
+    @media (max-width: 640px) {
+      #fiveserver-info-wrapper {
+        max-width: 98%;
+      }
+
+      #fiveserver-info {
+        border-radius: 0px;
+      }
+    }
+  </style>
+  <style type="text/css">
+    body {
+      background-color: #f8f9fa !important
+    }
+
+    .p-4 {
+      padding: 1.5rem !important;
+    }
+
+    .mb-0,
+    .my-0 {
+      margin-bottom: 0 !important;
+    }
+
+    .shadow-sm {
+      box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+    }
+
+    /* user-dashboard-info-box */
+    .user-dashboard-info-box .candidates-list .thumb {
+      margin-right: 20px;
+      
+    }
+
+    .user-dashboard-info-box .candidates-list .thumb img {
+      width: 80px;
+      height: 80px;
+      -o-object-fit: cover;
+      object-fit: cover;
+      overflow: hidden;
+      border-radius: 50%;
+    }
+
+    .user-dashboard-info-box .title {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      padding: 30px 0;
+    }
+
+    .user-dashboard-info-box .candidates-list td {
+      vertical-align: middle;
+    }
+
+    .user-dashboard-info-box td li {
+      margin: 0 4px;
+    }
+
+    .user-dashboard-info-box .table thead th {
+      border-bottom: none;
+    }
+
+    .table.manage-candidates-top th {
+      border: 0;
+    }
+
+    .user-dashboard-info-box .candidate-list-favourite-time .candidate-list-favourite {
+      margin-bottom: 10px;
+    }
+
+    .table.manage-candidates-top {
+      min-width: 650px;
+    }
+
+    .user-dashboard-info-box .candidate-list-details ul {
+      color: #969696;
+    }
+
+    /* Candidate List */
+    .candidate-list {
+      background: #ffffff;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      border-bottom: 1px solid #eeeeee;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      padding: 20px;
+      -webkit-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .candidate-list:hover {
+      -webkit-box-shadow: 0px 0px 34px 4px rgba(33, 37, 41, 0.06);
+      box-shadow: 0px 0px 34px 4px rgba(33, 37, 41, 0.06);
+      position: relative;
+      z-index: 99;
+    }
+
+    .candidate-list:hover a.candidate-list-favourite {
+      color: #e74c3c;
+      -webkit-box-shadow: -1px 4px 10px 1px rgba(24, 111, 201, 0.1);
+      box-shadow: -1px 4px 10px 1px rgba(24, 111, 201, 0.1);
+    }
+
+    .candidate-list .candidate-list-image {
+      margin-right: 25px;
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 80px;
+      flex: 0 0 80px;
+      border: none;
+    }
+
+    .candidate-list .candidate-list-image img {
+      width: 80px;
+      height: 80px;
+      -o-object-fit: cover;
+      object-fit: cover;
+    }
+
+    .candidate-list-title {
+      margin-bottom: 5px;
+    }
+
+    .candidate-list-details ul {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      margin-bottom: 0px;
+    }
+
+    .candidate-list-details ul li {
+      margin: 5px 10px 5px 0px;
+      font-size: 13px;
+    }
+
+    .candidate-list .candidate-list-favourite-time {
+      margin-left: auto;
+      text-align: center;
+      font-size: 13px;
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 90px;
+      flex: 0 0 90px;
+    }
+
+    .candidate-list .candidate-list-favourite-time span {
+      display: block;
+      margin: 0 auto;
+    }
+
+    .candidate-list .candidate-list-favourite-time .candidate-list-favourite {
+      display: inline-block;
+      position: relative;
+      height: 40px;
+      width: 40px;
+      line-height: 40px;
+      border: 1px solid #eeeeee;
+      border-radius: 100%;
+      text-align: center;
+      -webkit-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+      margin-bottom: 20px;
+      font-size: 16px;
+      color: #646f79;
+    }
+
+    .candidate-list .candidate-list-favourite-time .candidate-list-favourite:hover {
+      background: #ffffff;
+      color: #e74c3c;
+    }
+
+    .candidate-banner .candidate-list:hover {
+      position: inherit;
+      -webkit-box-shadow: inherit;
+      box-shadow: inherit;
+      z-index: inherit;
+    }
+
+    .bg-white {
+      background-color: #ffffff !important;
+    }
+
+    .p-4 {
+      padding: 1.5rem !important;
+    }
+
+    .mb-0,
+    .my-0 {
+      margin-bottom: 0 !important;
+    }
+
+    .shadow-sm {
+      box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+    }
+
+    .user-dashboard-info-box .candidates-list .thumb {
+      margin-right: 20px;
+    }
+  </style>
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha256-dzR8Ds+XW5B0REZLS6BLnQzhfK8IZf5uz5FfGgB10Ks=" crossorigin="anonymous" />
+
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
@@ -114,8 +384,7 @@
         </li>
         <!-- Apps -->
         <li class="menu-item">
-          <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-chat.html"
-            class="menu-link">
+          <a href="./listusers/index.html" class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-message-outline"></i>
             <div data-i18n="Chat">Chat</div>
 
@@ -132,15 +401,15 @@
 
         <!-- Pages -->
         <li class="menu-item">
-          <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-calendar.html"
+          <a onclick="DisplayListUsers()"
             class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
-            <div data-i18n="Account Settings">Customer</div>
+            <div data-i18n="Account Settings" >Customer</div>
           </a>
 
         </li>
         <li class="menu-item">
-          <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-calendar.html"
+          <a onclick="DisplayListSeller()"
             class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-lock-open-outline"></i>
             <div data-i18n="Authentications">Seller</div>
@@ -148,7 +417,7 @@
 
         </li>
         <li class="menu-item">
-          <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-calendar.html"
+          <a onclick="DisplayListInventory()"
             class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-cube-outline"></i>
             <div data-i18n="Misc">Inventory</div>
@@ -289,10 +558,10 @@
         <!-- / Navbar -->
 
         <!-- Content wrapper -->
-        <div class="content-wrapper">
+        <div class="content-wrapper" >
           <!-- Content -->
 
-          <div class="container-xxl flex-grow-1 container-p-y">
+          <div class="container-xxl flex-grow-1 container-p-y" style="display: block;" >
             <div class="row gy-4">
               <!-- Congratulations card -->
               <div class="col-md-12 col-lg-4">
@@ -300,8 +569,8 @@
                   <div class="card-body">
                     <h4 class="card-title mb-1 admin-target"></h4>
                     <p class="pb-0">Target of the month</p>
-                    <h4 class="text-primary mb-1">$42.8k</h4>
-                    <p class="mb-2 pb-1">78% of target 🚀</p>
+                    <h4 class="text-primary mb-1">&#8377; 10,000</h4>
+                    <p class="mb-2 pb-1 target-persentage">78% of target 🚀</p>
                   </div>
                   <img src="./assets/img/icons/misc/triangle-light.png"
                     class="scaleX-n1-rtl position-absolute bottom-0 end-0" width="166" alt="triangle background"
@@ -330,7 +599,7 @@
                         </div>
                       </div>
                     </div>
-                    <p class="mt-3"><span class="fw-medium">Total 48.5% growth</span> 😎 this month</p>
+                    <p class="mt-3"><span class="fw-medium total-growth">Total 48.5% growth</span> 😎 </p>
                   </div>
                   <div class="card-body" id="printableContent">
                     <div class="row g-3">
@@ -396,8 +665,15 @@
               <div class="col-xl-4 col-md-6">
                 <div class="card">
                   <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="card-title m-0 me-2">Sellers</h5>
+                    <h5 class="card-title m-0 me-2">Seller</h5>
                     <div class="dropdown">
+                      <button class="btn p-0" type="button" id="totalProfitID" data-bs-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="mdi mdi-dots-vertical mdi-24px"></i>
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="totalProfitID">
+                        <a class="dropdown-item" href="javascript:void(0);" onclick="DisplaySellerData()">Refresh</a>
+                      </div>
                     </div>
                   </div>
                   <div class="card-body">
@@ -411,7 +687,7 @@
                           </div>
                           <div>
                             <h6 class="mb-2">$24,895.65</h6>
-                        </div>
+                          </div>
                       </li>
                       <ul class="p-0 m-0">
                         <li class="d-flex mb-4 pb-md-2">
@@ -422,7 +698,7 @@
                             </div>
                             <div>
                               <h6 class="mb-2">$24,895.65</h6>
-                          </div>
+                            </div>
                         </li>
                         <ul class="p-0 m-0">
                           <li class="d-flex mb-4 pb-md-2">
@@ -433,101 +709,16 @@
                               </div>
                               <div>
                                 <h6 class="mb-2">$24,895.65</h6>
-                            </div>
+                              </div>
                           </li>
-                    </ul>
+                        </ul>
                   </div>
                 </div>
               </div>
               <!--/ Weekly Overview Chart -->
 
               <!-- Total Earnings -->
-              <div class="col-xl-4 col-md-6">
-                <div class="card">
-                  <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="card-title m-0 me-2">Total Earning</h5>
-                    <div class="dropdown">
-                      <button class="btn p-0" type="button" id="totalEarnings" data-bs-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <i class="mdi mdi-dots-vertical mdi-24px"></i>
-                      </button>
-                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="totalEarnings">
-                        <a class="dropdown-item" href="javascript:void(0);">Last 28 Days</a>
-                        <a class="dropdown-item" href="javascript:void(0);">Last Month</a>
-                        <a class="dropdown-item" href="javascript:void(0);">Last Year</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <div class="mb-3 mt-md-3 mb-md-5">
-                      <div class="d-flex align-items-center">
-                        <h2 class="mb-0">$24,895</h2>
-                        <span class="text-success ms-2 fw-medium">
-                          <i class="mdi mdi-menu-up mdi-24px"></i>
-                          <small>10%</small>
-                        </span>
-                      </div>
-                      <small class="mt-1">Compared to $84,325 last year</small>
-                    </div>
-                    <ul class="p-0 m-0">
-                      <li class="d-flex mb-4 pb-md-2">
-                        <div class="avatar flex-shrink-0 me-3">
-                          <img src="./assets/img/icons/misc/zipcar.png" alt="zipcar" class="rounded" />
-                        </div>
-                        <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                          <div class="me-2">
-                            <h6 class="mb-0">Zipcar</h6>
-                            <small>Vuejs, React & HTML</small>
-                          </div>
-                          <div>
-                            <h6 class="mb-2">$24,895.65</h6>
-                            <div class="progress bg-label-primary" style="height: 4px">
-                              <div class="progress-bar bg-primary" style="width: 75%" role="progressbar"
-                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="d-flex mb-4 pb-md-2">
-                        <div class="avatar flex-shrink-0 me-3">
-                          <img src="./assets/img/icons/misc/bitbank.png" alt="bitbank" class="rounded" />
-                        </div>
-                        <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                          <div class="me-2">
-                            <h6 class="mb-0">Bitbank</h6>
-                            <small>Sketch, Figma & XD</small>
-                          </div>
-                          <div>
-                            <h6 class="mb-2">$8,6500.20</h6>
-                            <div class="progress bg-label-info" style="height: 4px">
-                              <div class="progress-bar bg-info" style="width: 75%" role="progressbar" aria-valuenow="75"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="d-flex mb-md-3">
-                        <div class="avatar flex-shrink-0 me-3">
-                          <img src="./assets/img/icons/misc/aviato.png" alt="aviato" class="rounded" />
-                        </div>
-                        <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                          <div class="me-2">
-                            <h6 class="mb-0">Aviato</h6>
-                            <small>HTML & Angular</small>
-                          </div>
-                          <div>
-                            <h6 class="mb-2">$1,2450.80</h6>
-                            <div class="progress bg-label-secondary" style="height: 4px">
-                              <div class="progress-bar bg-secondary" style="width: 75%" role="progressbar"
-                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+
               <!--/ Total Earnings -->
 
               <!-- Four Cards -->
@@ -537,7 +728,7 @@
                   <div class="col-sm-6">
                     <div class="card h-100">
                       <div class="card-header pb-0">
-                        <h4 class="mb-0">$86.4k</h4>
+                        <h4 class="mb-0 total-sales-profit">$86.4k</h4>
                       </div>
                       <div class="card-body">
                         <div id="totalProfitLineChart" class="mb-3"></div>
@@ -561,17 +752,15 @@
                             <i class="mdi mdi-dots-vertical mdi-24px"></i>
                           </button>
                           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="totalProfitID">
-                            <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
-                            <a class="dropdown-item" href="javascript:void(0);">Share</a>
-                            <a class="dropdown-item" href="javascript:void(0);">Update</a>
+                            <a class="dropdown-item" href="javascript:void(0); onclick=" TotlalSales()">Refresh</a>
                           </div>
                         </div>
                       </div>
                       <div class="card-body mt-mg-1">
                         <h6 class="mb-2">Total Profit</h6>
                         <div class="d-flex flex-wrap align-items-center mb-2 pb-1">
-                          <h4 class="mb-0 me-2">$25.6k</h4>
-                          <small class="text-success mt-1">+42%</small>
+                          <h4 class="mb-0 me-2 profit">$25.6k</h4>
+                          <small class="text-success mt-1 profit-persent">+42%</small>
                         </div>
                         <small>Weekly Project</small>
                       </div>
@@ -579,53 +768,68 @@
                   </div>
                   <!--/ Total Profit Weekly Project -->
                   <!-- New Yearly Project -->
-                  <div class="col-sm-6">
-                    <div class="card h-100">
-                      <div class="card-header d-flex align-items-center justify-content-between">
-                        <div class="avatar">
-                          <div class="avatar-initial bg-primary rounded-circle shadow-sm">
-                            <i class="mdi mdi-wallet-travel mdi-24px"></i>
-                          </div>
-                        </div>
-                        <div class="dropdown">
-                          <button class="btn p-0" type="button" id="newProjectID" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <i class="mdi mdi-dots-vertical mdi-24px"></i>
-                          </button>
-                          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="newProjectID">
-                            <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
-                            <a class="dropdown-item" href="javascript:void(0);">Share</a>
-                            <a class="dropdown-item" href="javascript:void(0);">Update</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body mt-mg-1">
-                        <h6 class="mb-2">New Project</h6>
-                        <div class="d-flex flex-wrap align-items-center mb-2 pb-1">
-                          <h4 class="mb-0 me-2">862</h4>
-                          <small class="text-danger mt-1">-18%</small>
-                        </div>
-                        <small>Yearly Project</small>
-                      </div>
-                    </div>
-                  </div>
+
                   <!--/ New Yearly Project -->
                   <!-- Sessions chart -->
-                  <div class="col-sm-6">
-                    <div class="card h-100">
-                      <div class="card-header pb-0">
-                        <h4 class="mb-0">2,856</h4>
-                      </div>
-                      <div class="card-body">
-                        <div id="sessionsColumnChart" class="mb-3"></div>
-                        <h6 class="text-center mb-0">Sessions</h6>
-                      </div>
-                    </div>
-                  </div>
+
                   <!--/ Sessions chart -->
                 </div>
               </div>
               <!--/ Total Earning -->
+              <div class="col-xl-4 col-md-6">
+                <div class="card">
+                  <div class="card-header d-flex align-items-center justify-content-between">
+                    <h5 class="card-title m-0 me-2">Feedbacks</h5>
+                    <div class="dropdown">
+                      <button class="btn p-0" type="button" id="totalProfitID" data-bs-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="mdi mdi-dots-vertical mdi-24px"></i>
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="totalProfitID">
+                        <a class="dropdown-item" href="javascript:void(0);" onclick="DisplayFeedBack()">Refresh</a>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="card-body">
+
+                    <ul class="p-0 m-0 js-feedback-data">
+                      <li class="d-flex mb-4 pb-md-2">
+                        <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                          <div class="me-2">
+                            <h6 class="mb-0">Zipcar</h6>
+                            <small>Vuejs, React & HTML</small>
+                          </div>
+                          <div>
+                            <h6 class="mb-2">$24,895.65</h6>
+                          </div>
+                      </li>
+                      <ul class="p-0 m-0">
+                        <li class="d-flex mb-4 pb-md-2">
+                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                            <div class="me-2">
+                              <h6 class="mb-0">Zipcar</h6>
+                              <small>Vuejs, React & HTML</small>
+                            </div>
+                            <div>
+                              <h6 class="mb-2">$24,895.65</h6>
+                            </div>
+                        </li>
+                        <ul class="p-0 m-0">
+                          <li class="d-flex mb-4 pb-md-2">
+                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                              <div class="me-2">
+                                <h6 class="mb-0">Zipcar</h6>
+                                <small>Vuejs, React & HTML</small>
+                              </div>
+                              <div>
+                                <h6 class="mb-2">$24,895.65</h6>
+                              </div>
+                          </li>
+                        </ul>
+                  </div>
+                </div>
+              </div>
 
 
 
@@ -815,24 +1019,204 @@
             </div>
           </div>
           <!-- / Content -->
-
-          <!-- Footer -->
-          <footer class="content-footer footer bg-footer-theme">
-            <div class="container-xxl">
-              <div
-                class="footer-container d-flex align-items-center justify-content-between py-3 flex-md-row flex-column">
-                <div class="text-body mb-2 mb-md-0">
-                  <script>
-                    document.write(new Date().getFullYear());
-                  </script>
-                  <span class="text-danger"></span> Copyright &#169; by ANON
-
-                </div>
-                <div class="d-none d-lg-inline-block">
+          <div id="snippetContent" style="display: none;">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+              integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous">
+            <div class="container mt-3 mb-4">
+              <div class="col-lg-9 mt-4 mt-lg-0">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
+                      <table class="table manage-candidates-top mb-0">
+                        <thead>
+                          <tr>
+                            <th>Customer Name</th>
+                            <th class="text-center">Mobile No</th>
+                            <th class="action text-right">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody class="user-list-body">
+                          <tr class="candidates-list">
+                            <td class="title">
+                              <div class="thumb"> <img class="img-fluid"
+                                  src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
+                              </div>
+                              <div class="candidate-list-details">
+                                <div class="candidate-list-info">
+                                  <div class="candidate-list-title">
+                                    <h5 class="mb-0"><a href="#">Brooke Kelly</a></h5>
+                                  </div>
+                                  <div class="candidate-list-option">
+                                    <ul class="list-unstyled">
+                                      <li><i class="fas fa-filter pr-1"></i>Information Technology
+                                      </li>
+                                      <li><i class="fas fa-map-marker-alt pr-1"></i>Rolling
+                                        Meadows, IL 60008</li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                            <td class="candidate-list-favourite-time text-center"> <a
+                                class="candidate-list-favourite order-2 text-danger" href="#"></a>
+                              <span class="candidate-list-time order-1">Shortlisted</span></td>
+                            <td>
+                              <ul class="list-unstyled mb-0 d-flex justify-content-end">
+                  
+                                <li><a href="#" class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i
+                                      class="fas fa-pencil-alt"></i></a>
+                                </li>
+                                <li><a href="#" class="text-danger" data-toggle="tooltip" title=""
+                                    data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
+                              </ul>
+                            </td>
+                          </tr>
+        
+                        </tbody>
+                      </table>
+        
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </footer>
+           </div>
+            <!-- Seller -->
+            <div id="sellersnip" style="display: none;">
+              <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+              <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+                integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous">
+              <div class="container mt-3 mb-4">
+                <div class="col-lg-9 mt-4 mt-lg-0">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
+                        <table class="table manage-candidates-top mb-0">
+                          <thead>
+                            <tr>
+                              <th>Seller Name</th>
+                              <th class="text-center">Mobile No</th>
+                              <th class="action text-right">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody class="seller-list-body">
+                            <tr class="candidates-list">
+                              <td class="title">
+                                <div class="thumb"> <img class="img-fluid"
+                                    src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
+                                </div>
+                                <div class="candidate-list-details">
+                                  <div class="candidate-list-info">
+                                    <div class="candidate-list-title">
+                                      <h5 class="mb-0"><a href="#">Brooke Kelly</a></h5>
+                                    </div>
+                                    <div class="candidate-list-option">
+                                      <ul class="list-unstyled">
+                                        <li><i class="fas fa-filter pr-1"></i>Information Technology
+                                        </li>
+                                        <li><i class="fas fa-map-marker-alt pr-1"></i>Rolling
+                                          Meadows, IL 60008</li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+                              <td class="candidate-list-favourite-time text-center"> <a
+                                  class="candidate-list-favourite order-2 text-danger" href="#"></a>
+                                <span class="candidate-list-time order-1">Shortlisted</span></td>
+                              <td>
+                                <ul class="list-unstyled mb-0 d-flex justify-content-end">
+                    
+                                  <li><a href="#" class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i
+                                        class="fas fa-pencil-alt"></i></a>
+                                  </li>
+                                  <li><a href="#" class="text-danger" data-toggle="tooltip" title=""
+                                      data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
+                                </ul>
+                              </td>
+                            </tr>
+          
+                          </tbody>
+                        </table>
+          
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+
+              <!--Inventory-->
+
+            <div id="Inventorysnip" style="display: none;">
+              <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+              <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+                integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous">
+              <div class="container mt-3 mb-4">
+                <div class="col-lg-9 mt-4 mt-lg-0">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
+                        <table class="table manage-candidates-top mb-0">
+                          <thead>
+                            <tr>
+                              <th>Product Name</th>
+                              <th class="text-center">Price</th>
+                              <th class="action text-right">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody class="inventory-list-body">
+                            <tr class="candidates-list">
+                              <td class="title">
+                                <div class="thumb"> <img class="img-fluid"
+                                    src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
+                                </div>
+                                <div class="candidate-list-details">
+                                  <div class="candidate-list-info">
+                                    <div class="candidate-list-title">
+                                      <h5 class="mb-0"><a href="#">Brooke Kelly</a></h5>
+                                    </div>
+                                    <div class="candidate-list-option">
+                                      <ul class="list-unstyled">
+                                        <li><i class="fas fa-filter pr-1"></i>Information Technology
+                                        </li>
+                                        <li><i class="fas fa-map-marker-alt pr-1"></i>Rolling
+                                          Meadows, IL 60008</li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+                              <td class="candidate-list-favourite-time text-center"> <a
+                                  class="candidate-list-favourite order-2 text-danger" href="#"></a>
+                                <span class="candidate-list-time order-1">Shortlisted</span></td>
+                              <td>
+                                <ul class="list-unstyled mb-0 d-flex justify-content-end">
+                    
+                                  <li><a href="#" class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i
+                                        class="fas fa-pencil-alt"></i></a>
+                                  </li>
+                                  <li><a href="#" class="text-danger" data-toggle="tooltip" title=""
+                                      data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
+                                </ul>
+                              </td>
+                            </tr>
+          
+                          </tbody>
+                        </table>
+          
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+        
+
           <!-- / Footer -->
 
           <div class="content-backdrop fade"></div>
@@ -851,32 +1235,32 @@
     <span class="js-toast-content"></span>
   </div>
   <!-- / Layout wrapper -->
+  
 
 
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="./assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="./assets/vendor/libs/popper/popper.js"></script>
+    <script src="./assets/vendor/js/bootstrap.js"></script>
+    <script src="./assets/vendor/libs/node-waves/node-waves.js"></script>
+    <script src="./assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="./assets/vendor/js/menu.js"></script>
 
-  <!-- Core JS -->
-  <!-- build:js assets/vendor/js/core.js -->
-  <script src="./assets/vendor/libs/jquery/jquery.js"></script>
-  <script src="./assets/vendor/libs/popper/popper.js"></script>
-  <script src="./assets/vendor/js/bootstrap.js"></script>
-  <script src="./assets/vendor/libs/node-waves/node-waves.js"></script>
-  <script src="./assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-  <script src="./assets/vendor/js/menu.js"></script>
+    <!-- endbuild -->
 
-  <!-- endbuild -->
+    <!-- Vendors JS -->
+    <script src="./assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
-  <!-- Vendors JS -->
-  <script src="./assets/vendor/libs/apex-charts/apexcharts.js"></script>
+    <!-- Main JS -->
+    <script src="./assets/js/main.js"></script>
 
-  <!-- Main JS -->
-  <script src="./assets/js/main.js"></script>
+    <!-- Page JS -->
+    <script src="./assets/js/dashboards-analytics.js"></script>
 
-  <!-- Page JS -->
-  <script src="./assets/js/dashboards-analytics.js"></script>
-
-  <!-- Place this tag in your head or just before your close body tag. -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <script src="./script.js"></script>
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="./script.js"></script>
 </body>
 
 </html>
