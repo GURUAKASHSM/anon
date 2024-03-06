@@ -5,6 +5,11 @@
 
 <head>
   <meta charset="utf-8" />
+  <!-- LINEARICONS -->
+  <link rel="stylesheet" href="fonts/linearicons/style.css">
+
+  <!-- STYLE CSS -->
+  <link rel="stylesheet" href="css/style.css">
   <style>
     /* Injected by five-server */
     /*[data-highlight="true"] {
@@ -78,6 +83,11 @@
     }
   </style>
   <style type="text/css">
+    .admin-wrapper {
+      margin-left: 35%;
+      margin-top: 10%;
+    }
+
     body {
       background-color: #f8f9fa !important
     }
@@ -98,7 +108,7 @@
     /* user-dashboard-info-box */
     .user-dashboard-info-box .candidates-list .thumb {
       margin-right: 20px;
-      
+
     }
 
     .user-dashboard-info-box .candidates-list .thumb img {
@@ -271,6 +281,140 @@
     .user-dashboard-info-box .candidates-list .thumb {
       margin-right: 20px;
     }
+
+    .outer-container {
+      margin-top: 70px;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #eeeeee;
+      padding: 60px;
+      transition: all 0.3s ease-in-out;
+      width: 60%;
+      align-self: center;
+      height: 80%;
+      border-radius: 30px;
+    }
+
+    .outer-container:hover {
+      box-shadow: 0px 0px 34px 4px rgba(33, 37, 41, 0.06);
+      position: relative;
+      z-index: 99;
+    }
+
+    .inner-container {
+      width: 90%;
+      /* Full width inside the outer container */
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      padding: 20px;
+      box-sizing: border-box;
+      margin-top: 20px;
+      height: 80%;
+      align-self: center;
+      margin-left: 50px;
+      max-height: 1000px;
+      /* Adjust this value to provide spacing between outer and inner containers */
+    }
+
+    #delete-form-container h1 {
+      margin-bottom: 50px;
+
+      /* Center the heading */
+    }
+
+    #delete-form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #delete-form label {
+      margin-bottom: 10px;
+      font-size: 16px;
+      margin-left: 30px;
+      margin-top: 20px;
+    }
+
+    #delete-form select,
+    #delete-form input {
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      width: 80%;
+      margin-left: 30px;
+      margin-top: 20px;
+      /* Full width inside the inner container */
+    }
+
+    #delete-form button {
+      padding: 10px;
+      background-color: #007bff;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+      max-width: 150px;
+      margin-right: 10px;
+      align-self: flex-end;
+    }
+
+    #delete-form button:hover {
+      background-color: #0056b3;
+    }
+
+
+
+    #update-form-admin-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      /* Adjust if needed */
+    }
+
+
+    #update-form-admin h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    #update-form label {
+      margin-bottom: 10px;
+      font-size: 16px;
+      margin-left: 30px;
+      margin-top: 5px;
+      display: block;
+      /* Display each label on a new line */
+    }
+
+    #update-form select,
+    #update-form input {
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      width: 80%;
+      margin-left: 30px;
+      margin-top: 5px;
+      /* Adjust the margin for spacing between input fields */
+      display: block;
+      /* Display each input field on a new line */
+    }
+
+    #update-form button {
+      padding: 10px;
+      background-color: #007bff;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+      max-width: 150px;
+      margin-left: 550px;
+      /* Adjust the margin for spacing between button and input fields*/
+    }
   </style>
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -366,10 +510,10 @@
 
         <div class="menu-inner-shadow"></div>
 
-        <ul class="menu-inner py-1">
+        <ul class="menu-inner py-1" style="max-height: 50px;">
           <!-- Dashboards -->
-          <li class="menu-item active open">
-            <a href="javascript:void(0);" class="menu-link menu">
+          <li class="menu-item active open" onclick="DisplayDrashBord();">
+            <a class="menu-link menu">
               <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
               <div data-i18n="menu-link" style="color: aliceblue;">Dashboard</div>
 
@@ -379,7 +523,7 @@
 
 
 
-        <li class="menu-header fw-medium mt-4">
+        <li class="menu-header fw-medium mt-4" style="margin-top: -1000px;">
           <span class="menu-header-text">Apps &amp; Pages</span>
         </li>
         <!-- Apps -->
@@ -401,24 +545,21 @@
 
         <!-- Pages -->
         <li class="menu-item">
-          <a onclick="DisplayListUsers()"
-            class="menu-link">
+          <a onclick="DisplayListUsers()" class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
-            <div data-i18n="Account Settings" >Customer</div>
+            <div data-i18n="Account Settings">Customer</div>
           </a>
 
         </li>
         <li class="menu-item">
-          <a onclick="DisplayListSeller()"
-            class="menu-link">
+          <a onclick="DisplayListSeller()" class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-lock-open-outline"></i>
             <div data-i18n="Authentications">Seller</div>
           </a>
 
         </li>
         <li class="menu-item">
-          <a onclick="DisplayListInventory()"
-            class="menu-link">
+          <a onclick="DisplayListInventory()" class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-cube-outline"></i>
             <div data-i18n="Misc">Inventory</div>
           </a>
@@ -428,9 +569,8 @@
 
         <!-- Extended components -->
         <li class="menu-item">
-          <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-calendar.html"
-            class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-star-outline"></i>
+          <a onclick="DisplayEdit()" class="menu-link">
+            <i class="menu-icon tf-icons mdi mdi-pencil-outline"></i>
             <div data-i18n="Extended UI">Edit</div>
           </a>
 
@@ -439,26 +579,32 @@
 
         <!-- Form Validation -->
         <li class="menu-item">
-          <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/form-validation.html"
-            class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-checkbox-marked-circle-outline"></i>
+          <a onclick="Deletedata()" class="menu-link">
+            <i class="menu-icon tf-icons mdi mdi-delete"></i>
             <div data-i18n="Form Validation">Delete</div>
 
           </a>
         </li>
         <!-- Tables -->
-        <li class="menu-item">
-          <a href="tables-basic.html" class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-table"></i>
-            <div data-i18n="Tables">Tables</div>
+        <li class="menu-item" onclick="CreateSeller()">
+          <a class="menu-link">
+            <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
+            <div data-i18n="Tables">Create Seller</div>
           </a>
         </li>
         <!-- Data Tables -->
-        <li class="menu-item">
-          <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/tables-datatables-basic.html"
-            class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-grid"></i>
-            <div data-i18n="Datatables">Datatables</div>
+        <li class="menu-item" onclick="CreateWorker()">
+          <a class="menu-link">
+            <i class="menu-icon tf-icons mdi mdi-account"></i>
+            <div data-i18n="Datatables">Create Employee</div>
+
+          </a>
+        </li>
+        <!--Admin Create-->
+        <li class="menu-item" onclick="DisplayCreateAdmin()">
+          <a class="menu-link">
+            <i class="menu-icon tf-icons mdi mdi-account"></i>
+            <div data-i18n="Datatables">Create Admin</div>
 
           </a>
         </li>
@@ -494,12 +640,7 @@
 
             <ul class="navbar-nav flex-row align-items-center ms-auto">
               <!-- Place this tag where you want the button to render. -->
-              <li class="nav-item lh-1 me-3">
-                <a class="github-button"
-                  href="https://github.com/themeselection/materio-bootstrap-html-admin-template-free"
-                  data-icon="octicon-star" data-size="large" data-show-count="true"
-                  aria-label="Star themeselection/materio-bootstrap-html-admin-template-free on GitHub">Star</a>
-              </li>
+
 
               <!-- User -->
               <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -558,10 +699,10 @@
         <!-- / Navbar -->
 
         <!-- Content wrapper -->
-        <div class="content-wrapper" >
+        <div class="content-wrapper">
           <!-- Content -->
 
-          <div class="container-xxl flex-grow-1 container-p-y" style="display: block;" >
+          <div class="container-xxl flex-grow-1 container-p-y" style="display: block;">
             <div class="row gy-4">
               <!-- Congratulations card -->
               <div class="col-md-12 col-lg-4">
@@ -842,10 +983,10 @@
                     <table class="table">
                       <thead class="table-light">
                         <tr>
-                          <th class="text-truncate">User</th>
+                          <th class="text-truncate">Employee Name</th>
                           <th class="text-truncate">Email</th>
                           <th class="text-truncate">Role</th>
-                          <th class="text-truncate">Age</th>
+                          <th class="text-truncate">Mobile No</th>
                           <th class="text-truncate">Salary</th>
                           <th class="text-truncate">Status</th>
                         </tr>
@@ -1061,161 +1202,343 @@
                             </td>
                             <td class="candidate-list-favourite-time text-center"> <a
                                 class="candidate-list-favourite order-2 text-danger" href="#"></a>
-                              <span class="candidate-list-time order-1">Shortlisted</span></td>
+                              <span class="candidate-list-time order-1">Shortlisted</span>
+                            </td>
                             <td>
                               <ul class="list-unstyled mb-0 d-flex justify-content-end">
-                  
-                                <li><a href="#" class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i
-                                      class="fas fa-pencil-alt"></i></a>
+
+                                <li><a href="#" class="text-info" data-toggle="tooltip" title=""
+                                    data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
                                 </li>
                                 <li><a href="#" class="text-danger" data-toggle="tooltip" title=""
                                     data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
                               </ul>
                             </td>
                           </tr>
-        
+
                         </tbody>
                       </table>
-        
+
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-           </div>
-            <!-- Seller -->
-            <div id="sellersnip" style="display: none;">
-              <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
-              <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
-              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
-                integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous">
-              <div class="container mt-3 mb-4">
-                <div class="col-lg-9 mt-4 mt-lg-0">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
-                        <table class="table manage-candidates-top mb-0">
-                          <thead>
-                            <tr>
-                              <th>Seller Name</th>
-                              <th class="text-center">Mobile No</th>
-                              <th class="action text-right">Action</th>
-                            </tr>
-                          </thead>
-                          <tbody class="seller-list-body">
-                            <tr class="candidates-list">
-                              <td class="title">
-                                <div class="thumb"> <img class="img-fluid"
-                                    src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
-                                </div>
-                                <div class="candidate-list-details">
-                                  <div class="candidate-list-info">
-                                    <div class="candidate-list-title">
-                                      <h5 class="mb-0"><a href="#">Brooke Kelly</a></h5>
-                                    </div>
-                                    <div class="candidate-list-option">
-                                      <ul class="list-unstyled">
-                                        <li><i class="fas fa-filter pr-1"></i>Information Technology
-                                        </li>
-                                        <li><i class="fas fa-map-marker-alt pr-1"></i>Rolling
-                                          Meadows, IL 60008</li>
-                                      </ul>
-                                    </div>
+          </div>
+          <!-- Seller -->
+          <div id="sellersnip" style="display: none;">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+              integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous">
+            <div class="container mt-3 mb-4">
+              <div class="col-lg-9 mt-4 mt-lg-0">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
+                      <table class="table manage-candidates-top mb-0">
+                        <thead>
+                          <tr>
+                            <th>Seller Name</th>
+                            <th class="text-center">Mobile No</th>
+                            <th class="action text-right">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody class="seller-list-body">
+                          <tr class="candidates-list">
+                            <td class="title">
+                              <div class="thumb"> <img class="img-fluid"
+                                  src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
+                              </div>
+                              <div class="candidate-list-details">
+                                <div class="candidate-list-info">
+                                  <div class="candidate-list-title">
+                                    <h5 class="mb-0"><a href="#">Brooke Kelly</a></h5>
+                                  </div>
+                                  <div class="candidate-list-option">
+                                    <ul class="list-unstyled">
+                                      <li><i class="fas fa-filter pr-1"></i>Information Technology
+                                      </li>
+                                      <li><i class="fas fa-map-marker-alt pr-1"></i>Rolling
+                                        Meadows, IL 60008</li>
+                                    </ul>
                                   </div>
                                 </div>
-                              </td>
-                              <td class="candidate-list-favourite-time text-center"> <a
-                                  class="candidate-list-favourite order-2 text-danger" href="#"></a>
-                                <span class="candidate-list-time order-1">Shortlisted</span></td>
-                              <td>
-                                <ul class="list-unstyled mb-0 d-flex justify-content-end">
-                    
-                                  <li><a href="#" class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i
-                                        class="fas fa-pencil-alt"></i></a>
-                                  </li>
-                                  <li><a href="#" class="text-danger" data-toggle="tooltip" title=""
-                                      data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
-                                </ul>
-                              </td>
-                            </tr>
-          
-                          </tbody>
-                        </table>
-          
-                      </div>
+                              </div>
+                            </td>
+                            <td class="candidate-list-favourite-time text-center"> <a
+                                class="candidate-list-favourite order-2 text-danger" href="#"></a>
+                              <span class="candidate-list-time order-1">Shortlisted</span>
+                            </td>
+                            <td>
+                              <ul class="list-unstyled mb-0 d-flex justify-content-end">
+
+                                <li><a href="#" class="text-info" data-toggle="tooltip" title=""
+                                    data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                </li>
+                                <li><a href="#" class="text-danger" data-toggle="tooltip" title=""
+                                    data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
+                              </ul>
+                            </td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+
                     </div>
                   </div>
                 </div>
               </div>
-              </div>
+            </div>
+          </div>
 
-              <!--Inventory-->
+          <!--Inventory-->
 
-            <div id="Inventorysnip" style="display: none;">
-              <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
-              <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
-              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
-                integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous">
-              <div class="container mt-3 mb-4">
-                <div class="col-lg-9 mt-4 mt-lg-0">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
-                        <table class="table manage-candidates-top mb-0">
-                          <thead>
-                            <tr>
-                              <th>Product Name</th>
-                              <th class="text-center">Price</th>
-                              <th class="action text-right">Action</th>
-                            </tr>
-                          </thead>
-                          <tbody class="inventory-list-body">
-                            <tr class="candidates-list">
-                              <td class="title">
-                                <div class="thumb"> <img class="img-fluid"
-                                    src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
-                                </div>
-                                <div class="candidate-list-details">
-                                  <div class="candidate-list-info">
-                                    <div class="candidate-list-title">
-                                      <h5 class="mb-0"><a href="#">Brooke Kelly</a></h5>
-                                    </div>
-                                    <div class="candidate-list-option">
-                                      <ul class="list-unstyled">
-                                        <li><i class="fas fa-filter pr-1"></i>Information Technology
-                                        </li>
-                                        <li><i class="fas fa-map-marker-alt pr-1"></i>Rolling
-                                          Meadows, IL 60008</li>
-                                      </ul>
-                                    </div>
+          <div id="Inventorysnip" style="display: none;">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+              integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous">
+            <div class="container mt-3 mb-4">
+              <div class="col-lg-9 mt-4 mt-lg-0">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
+                      <table class="table manage-candidates-top mb-0">
+                        <thead>
+                          <tr>
+                            <th>Product Name</th>
+                            <th class="text-center">Price</th>
+                            <th class="action text-right">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody class="inventory-list-body">
+                          <tr class="candidates-list">
+                            <td class="title">
+                              <div class="thumb"> <img class="img-fluid"
+                                  src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
+                              </div>
+                              <div class="candidate-list-details">
+                                <div class="candidate-list-info">
+                                  <div class="candidate-list-title">
+                                    <h5 class="mb-0"><a href="#">Brooke Kelly</a></h5>
+                                  </div>
+                                  <div class="candidate-list-option">
+                                    <ul class="list-unstyled">
+                                      <li><i class="fas fa-filter pr-1"></i>Information Technology
+                                      </li>
+                                      <li><i class="fas fa-map-marker-alt pr-1"></i>Rolling
+                                        Meadows, IL 60008</li>
+                                    </ul>
                                   </div>
                                 </div>
-                              </td>
-                              <td class="candidate-list-favourite-time text-center"> <a
-                                  class="candidate-list-favourite order-2 text-danger" href="#"></a>
-                                <span class="candidate-list-time order-1">Shortlisted</span></td>
-                              <td>
-                                <ul class="list-unstyled mb-0 d-flex justify-content-end">
-                    
-                                  <li><a href="#" class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i
-                                        class="fas fa-pencil-alt"></i></a>
-                                  </li>
-                                  <li><a href="#" class="text-danger" data-toggle="tooltip" title=""
-                                      data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
-                                </ul>
-                              </td>
-                            </tr>
-          
-                          </tbody>
-                        </table>
-          
-                      </div>
+                              </div>
+                            </td>
+                            <td class="candidate-list-favourite-time text-center"> <a
+                                class="candidate-list-favourite order-2 text-danger" href="#"></a>
+                              <span class="candidate-list-time order-1">Shortlisted</span>
+                            </td>
+                            <td>
+                              <ul class="list-unstyled mb-0 d-flex justify-content-end">
+
+                                <li><a href="#" class="text-info" data-toggle="tooltip" title=""
+                                    data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                </li>
+                                <li><a href="#" class="text-danger" data-toggle="tooltip" title=""
+                                    data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
+                              </ul>
+                            </td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+
                     </div>
                   </div>
                 </div>
               </div>
-              
-        
+            </div>
+          </div>
+          <!--Delete-->
+
+          <div id="delete-form-container" class="outer-container" style="display: none;">
+            <h3>Delete Data</h3>
+
+            <form id="delete-form" style="margin-top: 50px;">
+              <label for="collection">Select Collection:</label>
+              <select id="collection" name="collection">
+                <option value="customer">Customer</option>
+                <option value="inventory">Inventory</option>
+                <option value="seller">Seller</option>
+              </select>
+              <label id="delete-by-label" for="id">Delete by:</label>
+              <input type="text" id="id" name="id" required>
+              <button type="submit">Delete Data</button>
+            </form>
+
+          </div>
+
+          <!--Edit Data-->
+          <div id="update-form-admin-container" class="outer-container" style="display: none;">
+            <h3>Edit Data:</h3>
+
+            <form id="update-form" style="margin-top: 30px;">
+              <label for="updatecollection">Select Collection:</label>
+              <select id="updatecollection" name="updatecollection" onchange="populateFieldOptions()">
+                <option value="customer">Customer</option>
+                <option value="inventory">Inventory</option>
+                <option value="seller">Seller</option>
+              </select>
+              <label for="idname">IdName:</label>
+              <input type="text" id="idname" name="idname" required><br>
+              <label for="field">Field:</label>
+              <select id="field" name="field">
+                <!-- Options will be dynamically updated based on the selected collection -->
+              </select>
+              <label for="newvalue">New Value:</label>
+              <input type="text" id="newvalue" name="newvalue" required><br>
+              <button type="submit">Update</button>
+            </form>
+          </div>
+          <!--Register User-->
+
+          <div class="wrapper" style="display: none;">
+            <div class="inner">
+              <img src="images/seller-1.png" alt="" class="image-1" style="margin-left: -130px;">
+              <form action="" id="seller-form">
+                <h3>Create Seller</h3>
+                <div class="form-holder">
+                  <span class="lnr lnr-user"></span>
+                  <input type="text" class="form-control" id="seller-name" placeholder="Username"
+                    style="border-top: none;border-left: none;border-right: none; margin-left: 10px;outline: none;">
+                </div>
+                <div class="form-holder">
+                  <span class="lnr lnr-phone-handset"></span>
+                  <input type="text" class="form-control" id="seller-phone" placeholder="Phone Number"
+                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                </div>
+                <div class="form-holder">
+                  <span class="lnr lnr-envelope"></span>
+                  <input type="text" class="form-control" id="seller-email" placeholder="Mail"
+                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                </div>
+                <div class="form-holder">
+                  <span class="lnr lnr-lock"></span>
+                  <input type="password" class="form-control" id="seller-password" placeholder="Password"
+                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                </div>
+                <div class="form-holder">
+                  <span class="lnr lnr-lock"></span>
+                  <input type="password" class="form-control" id="seller-confirm-password"
+                    placeholder="Confirm Password"
+                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                </div>
+                <div class="form-holder">
+                  <span class="lnr lnr-home"></span>
+                  <input type="address" class="form-control" id="seller-address" placeholder="Address"
+                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                </div>
+                <div class="form-holder">
+                  <span class="lnr lnr-user"></span>
+                  <input type="file" class="form-control" id="seller-image" placeholder="Address"
+                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                </div>
+                <button type="submit">
+                  <span>Create</span>
+                </button>
+              </form>
+              <img src="images/seller-2.png" alt="" class="image-2">
+            </div>
+
+          </div>
+
+          <!--Employee User-->
+
+          <div class="wrapper" id="employee-wrapper" style="display: none;">
+            <div class="inner">
+              <img src="images/image-1.png" alt="" class="image-1">
+              <form action="" id="Employee-form">
+                <h3>Create Employee</h3>
+                <div class="form-holder">
+                  <span class="lnr lnr-user"></span>
+                  <input type="text" class="form-control" id="worker-name" placeholder="Employee Name"
+                    style="border-top: none;border-left: none;border-right: none; margin-left: 10px;outline: none;">
+                </div>
+                <div class="form-holder">
+                  <span class="lnr lnr-phone-handset"></span>
+                  <input type="text" class="form-control" id="worker-phone" placeholder="Employee Phone Number"
+                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                </div>
+                <div class="form-holder">
+                  <span class="lnr lnr-envelope"></span>
+                  <input type="text" class="form-control" id="worker-email" placeholder="Employee Mail"
+                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                </div>
+                <div class="form-holder">
+                  <span class="lnr lnr-lock"></span>
+                  <input type="text" class="form-control" id="worker-role" placeholder="Employee Role"
+                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                </div>
+                <div class="form-holder">
+                  <span class="lnr lnr-lock"></span>
+                  <input type="number" class="form-control" id="worker-salary" placeholder="Employee Salary"
+                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                </div>
+                <div class="form-holder">
+                  <span class="lnr lnr-user"></span>
+                  <input type="file" class="form-control" id="worker-image" placeholder="Address"
+                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                </div>
+                <button type="submit">
+                  <span>Create</span>
+                </button>
+              </form>
+              <img src="images/image-2.png" alt="" class="image-2">
+            </div>
+
+          </div>
+
+          <!--Create Admin-->
+          <div class="admin-wrapper" id="admin-wrapper" style="display: none;">
+            <div class="inner">
+              <img src="images/image-1.png" alt="" class="image-1">
+              <form action="" id="admin-form">
+                <h3>Create Admin</h3>
+                <div class="form-holder">
+                  <span class="lnr lnr-user"></span>
+                  <input type="text" class="form-control" id="admin-name" placeholder="UserName" oninput="CreateEmailandPassword()"
+                    style="border-top: none;border-left: none;border-right: none; margin-left: 10px;outline: none;" required>
+                </div>
+                <div class="form-holder">
+                  <span class="lnr lnr-user"></span>
+                  <input type="email" class="form-control" id="admin-email" placeholder="Email"
+                    style="border-top: none;border-left: none;border-right: none; margin-left: 10px;outline: none;" required>
+                </div>
+                <div class="form-holder">
+                  <span class="lnr lnr-lock"></span>
+                  <input type="password" class="form-control" id="admin-password" placeholder="Password"
+                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;" required>
+                </div>
+                <div class="form-holder">
+                  <span class="lnr lnr-lock"></span>
+                  <input type="password" class="form-control" id="admin-confirmpassword" placeholder="Confirm-Password"
+                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;" required>
+                </div>
+                <div class="form-holder">
+                  <span class="lnr lnr-location"></span>
+                  <input type="text" class="form-control" id="admin-ip" placeholder="IP"
+                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;" required>
+                </div>
+                <button type="submit">
+                  <span>Create</span>
+                </button>
+              </form>
+              <img src="images/image-2.png" alt="" class="image-2">
+            </div>
+
+          </div>
+
+
 
           <!-- / Footer -->
 
@@ -1235,32 +1558,34 @@
     <span class="js-toast-content"></span>
   </div>
   <!-- / Layout wrapper -->
-  
 
 
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="./assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="./assets/vendor/libs/popper/popper.js"></script>
-    <script src="./assets/vendor/js/bootstrap.js"></script>
-    <script src="./assets/vendor/libs/node-waves/node-waves.js"></script>
-    <script src="./assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="./assets/vendor/js/menu.js"></script>
 
-    <!-- endbuild -->
+  <!-- Core JS -->
+  <!-- build:js assets/vendor/js/core.js -->
+  <script src="./assets/vendor/libs/jquery/jquery.js"></script>
+  <script src="./assets/vendor/libs/popper/popper.js"></script>
+  <script src="./assets/vendor/js/bootstrap.js"></script>
+  <script src="./assets/vendor/libs/node-waves/node-waves.js"></script>
+  <script src="./assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+  <script src="./assets/vendor/js/menu.js"></script>
 
-    <!-- Vendors JS -->
-    <script src="./assets/vendor/libs/apex-charts/apexcharts.js"></script>
+  <!-- endbuild -->
 
-    <!-- Main JS -->
-    <script src="./assets/js/main.js"></script>
+  <!-- Vendors JS -->
+  <script src="./assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
-    <!-- Page JS -->
-    <script src="./assets/js/dashboards-analytics.js"></script>
+  <!-- Main JS -->
+  <script src="./assets/js/main.js"></script>
 
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="./script.js"></script>
+  <!-- Page JS -->
+  <script src="./assets/js/dashboards-analytics.js"></script>
+
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <script src="./script.js"></script>
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/main.js"></script>
 </body>
 
 </html>
