@@ -367,7 +367,10 @@ function DisplayListUsers() {
     document.getElementById('sellersnip').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
+    document.getElementById('workersnip').style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
+    document.getElementById('feedbacksnip').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'block';
     fetch('http://localhost:8080/getallcustomerdata')
@@ -378,14 +381,14 @@ function DisplayListUsers() {
             data.forEach(customer => {
 
                 html += `
-            <tr class="candidates-list">
+            <tr class="candidates-list customer-list">
             <td class="title">
               <div class="thumb"> <img class="img-fluid"
                   src="https://previews.123rf.com/images/jenjawin/jenjawin1904/jenjawin190400251/120265520-account-icon-outline-vector-eps10-user-profile-sign-web-icon-with-check-mark-glyph-user-authorized.jpg" alt="">
               </div>
               <div class="candidate-list-details">
                 <div class="candidate-list-info">
-                  <div class="candidate-list-title">
+                  <div class="candidate-list-title customer">
                     <h5 class="mb-0"><a href="#">${customer.name.toUpperCase()}</a></h5>
                   </div>
                   <div class="candidate-list-option">
@@ -403,10 +406,13 @@ function DisplayListUsers() {
               <span class="candidate-list-time order-1">${customer.phonenumber}</span></td>
             <td>
               <ul class="list-unstyled mb-0 d-flex justify-content-end">
-              <li onclick="EditData('${customer.email}','customer')"><a class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i
+              <li onclick="ViewData('${customer.email}','customer');recentPage = 'customer';"><a  class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i
+              class="fas fa-eye"></i></a>
+              </li>
+              <li onclick="EditData('${customer.email}','customer');recentPage = 'customer';"><a class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i
               class="fas fa-pencil-alt"></i></a>
               </li>
-                <li  onclick="DeleteData('${customer.email}','cus')"><a class="text-danger" data-toggle="tooltip" title=""
+                <li  onclick="DeleteData('${customer.email}','cus');recentPage = 'customer';"><a class="text-danger" data-toggle="tooltip" title=""
                     data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
               </ul>
             </td>
@@ -476,9 +482,12 @@ function DisplayListSeller() {
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
+    document.getElementById('workersnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
+    document.getElementById('feedbacksnip').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.getElementById('sellersnip').style.display = 'block';
     fetch("http://localhost:8080/getallsellerdata", {
@@ -496,14 +505,14 @@ function DisplayListSeller() {
             data.seller.forEach(seller => {
 
                 html += `
-            <tr class="candidates-list">
+            <tr class="candidates-list seller-list">
             <td class="title">
               <div class="thumb"> <img class="img-fluid"
                   src="data:image/jpeg;base64,${seller.image}" alt="">
               </div>
               <div class="candidate-list-details">
                 <div class="candidate-list-info">
-                  <div class="candidate-list-title">
+                  <div class="candidate-list-title seller">
                     <h5 class="mb-0"><a href="#">${seller.sellername.toUpperCase()}</a></h5>
                   </div>
                   <div class="candidate-list-option">
@@ -521,10 +530,13 @@ function DisplayListSeller() {
               <span class="candidate-list-time order-1">${seller.phoneno}</span></td>
             <td>
               <ul class="list-unstyled mb-0 d-flex justify-content-end">
-              <li onclick="EditData('${seller.selleremail}','seller')"><a class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i
+              <li onclick="ViewData('${seller.selleremail}','seller');recentPage = 'inventory';"><a  class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i
+              class="fas fa-eye"></i></a>
+              </li>
+              <li onclick="EditData('${seller.selleremail}','seller');recentPage = 'inventory';"><a class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i
               class="fas fa-pencil-alt"></i></a>
               </li>
-                <li  onclick="DeleteData('${seller.selleremail}','sel')"><a class="text-danger" data-toggle="tooltip" title=""
+                <li  onclick="DeleteData('${seller.selleremail}','sel');recentPage = 'inventory';"><a class="text-danger" data-toggle="tooltip" title=""
                     data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
               </ul>
             </td>
@@ -544,9 +556,12 @@ function DisplayListInventory() {
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
+    document.getElementById('workersnip').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
+    document.getElementById('feedbacksnip').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'block';
     document.getElementById('update-form-admin-container').style.display = 'none';
     fetch("http://localhost:8080/getallinventorydata", {
@@ -564,14 +579,14 @@ function DisplayListInventory() {
             data.Inventory.forEach(customer => {
 
                 html += `
-            <tr class="candidates-list">
+            <tr class="candidates-list inventory-list">
             <td class="title">
               <div class="thumb"> <img class="img-fluid"
               src="data:image/jpeg;base64,${customer.image}" alt="">
               </div>
               <div class="candidate-list-details">
                 <div class="candidate-list-info">
-                  <div class="candidate-list-title">
+                  <div class="candidate-list-title inventory">
                     <h5 class="mb-0"><a href="#">${customer.itemname.toUpperCase()}</a></h5>
                   </div>
                   <div class="candidate-list-option">
@@ -589,10 +604,13 @@ function DisplayListInventory() {
               <span class="candidate-list-time order-1">${customer.price}</span></td>
             <td>
               <ul class="list-unstyled mb-0 d-flex justify-content-end">
-              <li onclick="EditData('${customer.itemname}','inventory')"><a  class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i
+              <li onclick="ViewData('${customer.itemname}','inventory');recentPage = 'inventory';"><a  class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i
+              class="fas fa-eye"></i></a>
+              </li>
+              <li onclick="EditData('${customer.itemname}','inventory');recentPage = 'inventory';"><a  class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i
               class="fas fa-pencil-alt"></i></a>
               </li>
-                <li  onclick="DeleteData('${customer.itemname}','inven')"><a class="text-danger" data-toggle="tooltip" title=""
+                <li  onclick="DeleteData('${customer.itemname}','inven');recentPage = 'inventory';"><a class="text-danger" data-toggle="tooltip" title=""
                     data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
               </ul>
             </td>
@@ -621,9 +639,12 @@ function Deletedata() {
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
+    document.getElementById('workersnip').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
+    document.getElementById('feedbacksnip').style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
 }
 
@@ -667,10 +688,13 @@ function DisplayEdit() {
     document.querySelector('.outer-container').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
+    document.getElementById('workersnip').style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
+    document.getElementById('feedbacksnip').style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'block';
 }
 
@@ -731,12 +755,12 @@ document.getElementById("update-form").addEventListener("submit", function (even
     })
         .then(response => response.json())
         .then(data => {
-            const resultDiv = document.getElementById("result");
+            
             if (data) {
-                resultDiv.innerHTML = "<p>Update successful.</p>";
+               showToast("Updated Successfully","Success",3)
                 document.getElementById("update-form").reset();
             } else {
-                resultDiv.innerHTML = "<p>Update failed.</p>";
+                showToast("Update Failes","Danger",0)
                 document.getElementById("update-form").reset();
             }
         })
@@ -749,12 +773,15 @@ document.getElementById("update-form").addEventListener("submit", function (even
 
 function CreateSeller() {
     document.getElementById('employee-wrapper').style.display = 'none';
+    document.getElementById('workersnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'block';
     document.querySelector('.outer-container').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
+    document.getElementById('feedbacksnip').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
 }
@@ -822,9 +849,12 @@ function DisplayDrashBord() {
     document.querySelector('.container-p-y').style.display = 'block';
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
+    document.getElementById('workersnip').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'none';
+    document.getElementById('feedbacksnip').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
 }
 
@@ -834,7 +864,10 @@ function CreateWorker() {
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
+    document.getElementById('workersnip').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
+    document.getElementById('feedbacksnip').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'block';
     document.getElementById('admin-wrapper').style.display = 'none';
@@ -880,6 +913,7 @@ document.getElementById("employee-wrapper").addEventListener("submit", function 
 
 function DisplayCreateAdmin() {
     document.getElementById('employee-wrapper').style.display = 'none';
+    document.getElementById('workersnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
@@ -888,6 +922,10 @@ function DisplayCreateAdmin() {
     document.getElementById('Inventorysnip').style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'block';
+    document.getElementById("qr-code").style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
+    document.getElementById('feedbacksnip').style.display = 'none';
+    document.getElementById("admin-input").style.display = 'block';
 }
 
 document.getElementById("admin-wrapper").addEventListener("submit", function (event) {
@@ -920,8 +958,25 @@ document.getElementById("admin-wrapper").addEventListener("submit", function (ev
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data)
-            showToast(data.result, "info", 1)
+            if (data.error != "") {
+                showToast(data.error, "info", 1)
+                return
+            }
+            showToast("Created Successfully", "info", 1)
+            var totpKey = data.result;
+
+            // Generate QR code
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: totpKey,
+                width: 128,
+                height: 128,
+            });
+            document.getElementById("admin-form").reset()
+            document.getElementById("qr-code").style.display = 'block';
+            document.getElementById("admin-input").style.display = 'none';
+            document.querySelector('.totp').innerHTML = `<br> Please Scan this QR to Get TOTP (or) <br> Use this Key : ${totpKey}`
+
+
         })
         .catch(error => {
             // Handle errors, e.g., display an error message
@@ -940,4 +995,596 @@ function CreateEmailandPassword() {
         return
     }
     email.value = (name.toLowerCase()).replace(/\s/g, '') + '@anon.com'
+}
+
+function search() {
+    const searchInput = document.getElementById('Search').value.toLowerCase();
+    const doctorRows = document.querySelectorAll(`.candidates-list`);
+
+    doctorRows.forEach(row => {
+        const Name = row.querySelector(`.candidate-list-title h5 a`).innerText.toLowerCase();
+        if (Name.includes(searchInput)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+}
+
+function DisplayFeedBacks() {
+    console.log("Displaylist")
+    document.getElementById('employee-wrapper').style.display = 'none';
+    document.querySelector('.container-p-y').style.display = 'none';
+    document.querySelector('.outer-container').style.display = 'none';
+    document.getElementById('sellersnip').style.display = 'none';
+    document.getElementById('feedbacksnip').style.display = 'block';
+    document.getElementById('Inventorysnip').style.display = 'none';
+    document.querySelector('.wrapper').style.display = 'none';
+    document.getElementById('admin-wrapper').style.display = 'none';
+    document.getElementById('update-form-admin-container').style.display = 'none';
+    document.getElementById('snippetContent').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
+    document.getElementById('workersnip').style.display = 'none';
+    fetch("http://localhost:8080/getfeedback", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(),
+    })
+        .then(response => response.json())
+        .then(data => {
+            let html = ""
+            console.log(data.result)
+            data.result.forEach(feedback => {
+
+                html += `
+
+            <tr class="candidates-list">
+            <td class="title">
+              <div class="thumb"> <img class="img-fluid"
+                  src="https://previews.123rf.com/images/jenjawin/jenjawin1904/jenjawin190400251/120265520-account-icon-outline-vector-eps10-user-profile-sign-web-icon-with-check-mark-glyph-user-authorized.jpg" alt="">
+              </div>
+              <div class="candidate-list-details">
+                <div class="candidate-list-info">
+                  <div class="candidate-list-title customer">
+                    <h5 class="mb-0"><a href="#">${feedback.email}</a></h5>
+                  </div>
+                  <div class="candidate-list-option">
+                    <ul class="list-unstyled">
+                      <li><i class="fas fa-filter pr-1"></i>${feedback.role.toUpperCase()}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td class="candidate-list-favourite-time text-center"> <a
+                class="candidate-list-favourite order-2 text-danger" href="#"></a>
+              <span class="candidate-list-time order-1">${feedback.feedback}</span></td>
+            <td>
+              <ul class="list-unstyled mb-0 d-flex justify-content-end">
+
+     
+
+                <li  onclick="deleteFeedback('${feedback.email}','${feedback.feedback}');DisplayFeedBacks()"><a class="text-danger" data-toggle="tooltip" title=""
+                    data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
+              </ul>
+            </td>
+          </tr>`;
+
+            });
+            document.querySelector('.feedback-list-body').innerHTML = html;
+        })
+        .catch(error => {
+            showToast(error, "Error", 0);
+        });
+}
+
+
+function DisplayAllWorkers() {
+    console.log("Displaylist")
+    document.getElementById('employee-wrapper').style.display = 'none';
+    document.querySelector('.container-p-y').style.display = 'none';
+    document.querySelector('.outer-container').style.display = 'none';
+    document.getElementById('sellersnip').style.display = 'none';
+    document.getElementById('feedbacksnip').style.display = 'none';
+    document.getElementById('Inventorysnip').style.display = 'none';
+    document.querySelector('.wrapper').style.display = 'none';
+    document.getElementById('admin-wrapper').style.display = 'none';
+    document.getElementById('update-form-admin-container').style.display = 'none';
+    document.getElementById('snippetContent').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
+    document.getElementById('workersnip').style.display = 'block';
+    fetch("http://localhost:8080/getworkers", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+    })
+        .then(response => response.json())
+        .then(data => {
+            let html = ""
+            console.log(data.result)
+            data.result.forEach(worker => {
+
+                html += `
+
+            <tr class="candidates-list">
+            <td class="title">
+              <div class="thumb"> <img class="img-fluid"
+                  src="data:image/jpeg;base64,${worker.image}" alt="">
+              </div>
+              <div class="candidate-list-details">
+                <div class="candidate-list-info">
+                  <div class="candidate-list-title customer">
+                    <h5 class="mb-0"><a href="#">${worker.username.toUpperCase()}</a></h5>
+                  </div>
+                  <div class="candidate-list-option">
+                    <ul class="list-unstyled">
+                      <li><i class="fas fa-filter pr-1"></i>${worker.email}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td class="candidate-list-favourite-time text-center"> <a
+                class="candidate-list-favourite order-2 text-danger" href="#"></a>
+              <span class="candidate-list-time order-1">${worker.no}</span></td>
+            <td>
+              <ul class="list-unstyled mb-0 d-flex justify-content-end">
+               <li  onclick="ViewData('${worker.email}','worker');recentPage = 'worker';"><a class="text-danger" data-toggle="tooltip" title=""
+              data-original-title="Delete"><i class="far fa-eye"></i></a></li>
+                <li  onclick="deleteWorker('${worker.email}');DisplayFeedBacks();recentPage = 'worker';"><a class="text-danger" data-toggle="tooltip" title=""
+                    data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
+              </ul>
+            </td>
+          </tr>`;
+
+            });
+            document.querySelector('.worker-list-body').innerHTML = html;
+        })
+        .catch(error => {
+            showToast(error, "Error", 0);
+        });
+}
+
+
+function ViewData(id, profession) {
+    document.getElementById('employee-wrapper').style.display = 'none';
+    document.querySelector('.container-p-y').style.display = 'none';
+    document.querySelector('.outer-container').style.display = 'none';
+    document.getElementById('sellersnip').style.display = 'none';
+    document.getElementById('feedbacksnip').style.display = 'none';
+    document.getElementById('Inventorysnip').style.display = 'none';
+    document.querySelector('.wrapper').style.display = 'none';
+    document.getElementById('admin-wrapper').style.display = 'none';
+    document.getElementById('update-form-admin-container').style.display = 'none';
+    document.getElementById('snippetContent').style.display = 'none';
+    document.getElementById('workersnip').style.display = 'none';
+
+    fetch("http://localhost:8080/getdata", {
+        method: "POST", // Use DELETE method to delete data
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ id: id, collection: profession })
+    })
+
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.message)
+
+            let html = ""
+            if (profession == 'inventory') {
+                html = `
+                <div class="container" style="width:1500px;max-width:1500px; margin-left:300px">
+                <i class="fas fa-arrow-left back-icon" onclick="BackButton()"></i>
+                <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                <div class="panel panel-white profile-widget">
+                <div class="row">
+                <div class="col-sm-12">
+                <div class="image-container bg2">
+                <img src="data:image/jpeg;base64,${data.message.image}" class="avatar" alt="avatar" height="100px" >
+                </div>
+                </div>
+                <div class="col-sm-12">
+                <div class="details">
+                <h4>${data.message.itemname} <i class="fa fa-sheild"></i></h4>
+                <div class="mg-top-10">
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-sm-6"   >
+                <div class="panel panel-white border-top-purple">
+                <div class="panel-heading">
+                <h3 class="panel-title" style="height:30px;">Item Info</h3>
+                </div>
+                <div class="panel-body" style="padding:30px; border-radius:5px">
+                <div class="body-section">
+                <h5 class="section-heading">Item Name : <span class="message">${data.message.itemname}</span></h5>
+                </div>
+                <div class="body-section">
+                <h5 class="section-heading">Category :
+                <span class="message">${data.message.itemcategory}</span>
+               </h5>
+               </div>
+                <div class="body-section">
+                <h5 class="section-heading">Price : <span class="message" >${data.message.price}  </span> </h5>
+                </div>
+                <div class="body-section">
+                <!-- <a href="#" class="btn btn-purple btn-sm">Edit</a> -->
+                </div>
+                </div>
+                </div>
+    
+                <div class="panel">
+              
+    
+                </div>
+                </div>
+                <div class="col-sm-6">
+                <div class="panel panel-white border-top-green">
+                <div class="panel-heading">
+                <h3 class="panel-title">Seller Info</h3>
+              
+                
+                
+                </div>
+                <div class="panel-body" style="padding:30px">
+    
+    
+                <div class="body-section">
+                <h5 class="section-heading">Seller Name : <span class="message">  ${data.message.sellername}</span></h5>
+                </div>
+
+                <div class="body-section">
+                <h5 class="section-heading">Quantity : <span class="message">${data.message.quantity}</span></h5>
+                </div>
+    
+                <div class="body-section">
+                <h5 class="section-heading">Available Quantity:  <span class="message">${data.message.sellerquantity}</span></h5>
+                </div>
+
+
+            
+                </div>
+                </div>
+                <div class="panel ">
+    
+                </div>
+      
+    
+                
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+            `;
+
+            } else if (profession == 'customer') {
+                html = `
+                <div class="container" style="width:1500px;max-width:1500px; margin-left:300px">
+                <i class="fas fa-arrow-left back-icon" onclick="BackButton()"></i>
+                <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                <div class="panel panel-white profile-widget">
+                <div class="row">
+                <div class="col-sm-12">
+                <div class="image-container bg2">
+                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="avatar" alt="avatar" height="100px" >
+                </div>
+                </div>
+                <div class="col-sm-12">
+                <div class="details">
+                <h4>${data.message.name} <i class="fa fa-sheild"></i></h4>
+                <div class="mg-top-10">
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-sm-6"   >
+                <div class="panel panel-white border-top-purple">
+                <div class="panel-heading">
+                <h3 class="panel-title" style="height:30px;">Account Info</h3>
+                </div>
+                <div class="panel-body" style="padding:30px; border-radius:5px">
+                <div class="body-section">
+                <h5 class="section-heading">Account Name : <span class="message">${data.message.name}</span></h5>
+                </div>
+                <div class="body-section">
+                <h5 class="section-heading">Password :
+                <span class="message" style="display:none" id="passwordText">${data.message.password}</span>
+                <a class="text-info" data-toggle="tooltip" title="Toggle Password" onclick="togglePasswordVisibility()">
+                    <i class="far fa-eye" id="eyeIcon"></i>
+                </a>
+               </h5>
+               </div>
+                <div class="body-section">
+                <h5 class="section-heading">ID : <span class="message" >${data.message.customerid}  </span> </h5>
+                </div>
+                <div class="body-section">
+                <!-- <a href="#" class="btn btn-purple btn-sm">Edit</a> -->
+                </div>
+                </div>
+                </div>
+    
+                <div class="panel">
+              
+    
+                </div>
+                </div>
+                <div class="col-sm-6">
+                <div class="panel panel-white border-top-green">
+                <div class="panel-heading">
+                <h3 class="panel-title">User Info</h3>
+               
+                </div>
+                <div class="panel-body" style="padding:30px">
+    
+    
+                <div class="body-section">
+                <h5 class="section-heading">Name : <span class="message">${data.message.name}</span></h5>
+                </div>
+    
+                <div class="body-section">
+                <h5 class="section-heading">Telephone:  <span class="message">${data.message.phonenumber}</span></h5>
+                </div>
+                <div class="body-section">
+                <h5 class="section-heading">Email : <span class="message">${data.message.email}</span></h5>
+                </div>
+                <div class="body-section">
+                <h5 class="section-heading">Address : <span class="message">${data.message.address}</span></h5>
+                </div>
+            
+                </div>
+                </div>
+                <div class="panel ">
+    
+                </div>
+      
+    
+                
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+            `;
+            } else if (profession == 'seller') {
+                html = `
+            
+            <div class="container" style="width:1500px;max-width:1500px; margin-left:300px">
+            <i class="fas fa-arrow-left back-icon" onclick="BackButton()"></i>
+            <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+            <div class="panel panel-white profile-widget">
+            <div class="row">
+            <div class="col-sm-12">
+            <div class="image-container bg2">
+            <img src="data:image/jpeg;base64,${data.message.image}" class="avatar" alt="avatar" height="100px" >
+            </div>
+            </div>
+            <div class="col-sm-12">
+            <div class="details">
+            <h4>${data.message.sellername} <i class="fa fa-sheild"></i></h4>
+            <div class="mg-top-10">
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-sm-6"   >
+            <div class="panel panel-white border-top-purple">
+            <div class="panel-heading">
+            <h3 class="panel-title" style="height:30px;">Account Details</h3>
+            </div>
+            <div class="panel-body" style="padding:30px; border-radius:5px">
+            <div class="body-section">
+            <h5 class="section-heading">Account Name : <span class="message">${data.message.sellername}</span></h5>
+            </div>
+            <div class="body-section">
+            <h5 class="section-heading">Password :
+            <span class="message" style="display:none" id="passwordText">${data.message.password}</span>
+            <a class="text-info" data-toggle="tooltip" title="Toggle Password" onclick="togglePasswordVisibility()">
+                <i class="far fa-eye" id="eyeIcon"></i>
+            </a>
+           </h5>
+           </div>
+            <div class="body-section">
+            <h5 class="section-heading">ID : <span class="message" >${data.message.sellerid}  </span> </h5>
+            </div>
+            <div class="body-section">
+            <!-- <a href="#" class="btn btn-purple btn-sm">Edit</a> -->
+            </div>
+            </div>
+            </div>
+
+            <div class="panel">
+          
+
+            </div>
+            </div>
+            <div class="col-sm-6">
+            <div class="panel panel-white border-top-green">
+            <div class="panel-heading">
+            <h3 class="panel-title">Seller Info</h3>
+            <div class="controls pull-right">
+            <span class="pull-right clickable">
+            <i class="fa fa-chevron-up"></i>
+            </span>
+            </div>
+            </div>
+            <div class="panel-body" style="padding:30px">
+
+
+            <div class="body-section">
+            <h5 class="section-heading">Name : <span class="message">${data.message.sellername}</span></h5>
+            </div>
+
+            <div class="body-section">
+            <h5 class="section-heading">Telephone:  <span class="message">${data.message.phonenumber}</span></h5>
+            </div>
+            <div class="body-section">
+            <h5 class="section-heading">Email : <span class="message">${data.message.selleremail}</span></h5>
+            </div>
+            <div class="body-section">
+            <h5 class="section-heading">Address : <span class="message">${data.message.address}</span></h5>
+            </div>
+        
+            </div>
+            </div>
+            <div class="panel ">
+
+            </div>
+  
+
+            
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            `;
+            } else if (profession == 'worker') {
+                html = `
+                <div class="container" style="width:1500px;max-width:1500px; margin-left:300px">
+               
+                <div class="row">
+                <i class="fas fa-arrow-left back-icon" onclick="BackButton()"></i>
+                <div class="col-sm-8 col-sm-offset-2">
+                <div class="panel panel-white profile-widget">
+                <div class="row">
+                <div class="col-sm-12">
+                <div class="image-container bg2">
+                <img src="data:image/jpeg;base64,${data.message.image}" class="avatar" alt="avatar" height="100px" >
+                </div>
+                </div>
+                <div class="col-sm-12">
+                <div class="details">
+                <h4>${data.message.username} <i class="fa fa-sheild"></i></h4>
+                <div class="mg-top-10">
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-sm-6"   >
+                <div class="panel panel-white border-top-purple">
+                <div class="panel-heading">
+                <h3 class="panel-title" style="height:30px;">Account Details</h3>
+                </div>
+                <div class="panel-body" style="padding:30px; border-radius:5px">
+                <div class="body-section">
+                <h5 class="section-heading">Account Name : <span class="message">${data.message.username}</span></h5>
+                </div>
+                <div class="body-section">
+                <h5 class="section-heading">Status :
+                <span class="message"  id="passwordText">${data.message.status}</span>
+               </h5>
+               </div>
+                <div class="body-section">
+                <h5 class="section-heading">Role : <span class="message" >${data.message.role}  </span> </h5>
+                </div>
+                <div class="body-section">
+                <!-- <a href="#" class="btn btn-purple btn-sm">Edit</a> -->
+                </div>
+                </div>
+                </div>
+    
+                <div class="panel">
+              
+    
+                </div>
+                </div>
+                <div class="col-sm-6">
+                <div class="panel panel-white border-top-green">
+                <div class="panel-heading">
+                <h3 class="panel-title">Seller Info</h3>
+                </div>
+                <div class="panel-body" style="padding:30px">
+    
+    
+                <div class="body-section">
+                <h5 class="section-heading">Name : <span class="message">${data.message.username}</span></h5>
+                </div>
+    
+                <div class="body-section">
+                <h5 class="section-heading">Telephone:  <span class="message">${data.message.no}</span></h5>
+                </div>
+                <div class="body-section">
+                <h5 class="section-heading">Email : <span class="message">${data.message.email}</span></h5>
+                </div>
+                <div class="body-section">
+                <h5 class="section-heading">Salary : <span class="message">${data.message.salary}</span></h5>
+                </div>
+            
+                </div>
+                </div>
+                <div class="panel ">
+    
+                </div>
+      
+    
+                
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+            `;
+            }
+
+
+            document.querySelector('.display-view').innerHTML = html;
+            document.querySelector('.display-view').style.display = 'block';
+        })
+        .catch(error => {
+            console.log(error)
+        });
+
+}
+
+
+
+
+function togglePasswordVisibility() {
+    var passwordText = document.getElementById('passwordText');
+    var eyeIcon = document.getElementById('eyeIcon');
+
+    // Toggle password visibility
+    if (passwordText.style.display === 'none') {
+        passwordText.style.display = 'inline';
+        eyeIcon.classList.remove('fa-eye-slash');
+        eyeIcon.classList.add('fa-eye');
+    } else {
+        passwordText.style.display = 'none';
+        eyeIcon.classList.remove('fa-eye');
+        eyeIcon.classList.add('fa-eye-slash');
+    }
+}
+var recentPage = ''
+function BackButton(){
+   if(recentPage == 'inventory'){
+    DisplayListInventory()
+   }else if(recentPage == 'seller'){
+    DisplayListSeller()
+   }else if(recentPage == 'customer'){
+    DisplayListUsers()
+   }else if(recentPage == 'worker'){
+    DisplayAllWorkers()
+   }
 }

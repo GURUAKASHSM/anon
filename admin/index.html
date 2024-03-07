@@ -7,6 +7,28 @@
   <meta charset="utf-8" />
   <!-- LINEARICONS -->
   <link rel="stylesheet" href="fonts/linearicons/style.css">
+  <!--===============================================================================================-->
+  <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="css/util.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <!--===============================================================================================-->
 
   <!-- STYLE CSS -->
   <link rel="stylesheet" href="css/style.css">
@@ -83,10 +105,778 @@
     }
   </style>
   <style type="text/css">
+    body {
+      margin-top: 20px;
+      background: #eee;
+    }
+
+    .profile-widget {
+      position: relative;
+    }
+
+    .profile-widget .image-container {
+      background-size: cover;
+      background-position: center;
+      padding: 190px 0 10px;
+    }
+
+    .profile-widget .image-container .profile-background {
+      width: 100%;
+      height: auto;
+    }
+
+    .profile-widget .image-container .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto -60px;
+      display: block;
+    }
+
+    .profile-widget .details {
+      padding: 50px 15px 15px;
+      text-align: center;
+    }
+
+    /* Component: Mini Profile Widget */
+    .mini-profile-widget .image-container .avatar {
+      width: 180px;
+      height: 180px;
+      display: block;
+      margin: 0 auto;
+      border-radius: 50%;
+      background: white;
+      padding: 4px;
+      border: 1px solid #dddddd;
+    }
+
+    .mini-profile-widget .details {
+      text-align: center;
+    }
+
+    /* Component: Panel */
+    .panel {
+      border-radius: 0;
+      margin-bottom: 30px;
+    }
+
+    .panel.solid-color {
+      color: white;
+    }
+
+    .panel .panel-heading {
+      border-radius: 0;
+      position: relative;
+    }
+
+    .panel .panel-heading>.controls {
+      position: absolute;
+      right: 10px;
+      top: 12px;
+    }
+
+    .panel .panel-heading>.controls .nav.nav-pills {
+      margin: -8px 0 0 0;
+    }
+
+    .panel .panel-heading>.controls .nav.nav-pills li a {
+      padding: 5px 8px;
+    }
+
+    .panel .panel-heading .clickable {
+      margin-top: 0px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .panel .panel-heading.no-heading-border {
+      border-bottom-color: transparent;
+    }
+
+    .panel .panel-heading .left {
+      float: left;
+    }
+
+    .panel .panel-heading .right {
+      float: right;
+    }
+
+    .panel .panel-title {
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    .panel .panel-title.panel-title-sm {
+      font-size: 18px;
+      line-height: 28px;
+    }
+
+    .panel .panel-title.panel-title-lg {
+      font-size: 24px;
+      line-height: 34px;
+    }
+
+    .panel .panel-body {
+      font-size: 13px;
+    }
+
+    .panel .panel-body>.body-section {
+      margin: 0px 0px 20px;
+    }
+
+    .panel .panel-body>.body-section>.section-heading {
+      margin: 0px 0px 5px;
+      font-weight: bold;
+    }
+
+    .panel .panel-body>.body-section>.section-content {
+      margin: 0px 0px 10px;
+    }
+
+    .panel-white {
+      border: 1px solid #dddddd;
+    }
+
+    .panel-white>.panel-heading {
+      color: #333;
+      background-color: #fff;
+      border-color: #ddd;
+    }
+
+    .panel-white>.panel-footer {
+      background-color: #fff;
+      border-color: #ddd;
+    }
+
+    .panel-primary {
+      border: 1px solid #dddddd;
+    }
+
+    .panel-purple {
+      border: 1px solid #dddddd;
+    }
+
+    .panel-purple>.panel-heading {
+      color: #fff;
+      background-color: #8e44ad;
+      border: none;
+    }
+
+    .panel-purple>.panel-heading .panel-title a:hover {
+      color: #f0f0f0;
+    }
+
+    .panel-light-purple {
+      border: 1px solid #dddddd;
+    }
+
+    .panel-light-purple>.panel-heading {
+      color: #fff;
+      background-color: #9b59b6;
+      border: none;
+    }
+
+    .panel-light-purple>.panel-heading .panel-title a:hover {
+      color: #f0f0f0;
+    }
+
+    .panel-blue,
+    .panel-info {
+      border: 1px solid #dddddd;
+    }
+
+    .panel-blue>.panel-heading,
+    .panel-info>.panel-heading {
+      color: #fff;
+      background-color: #2980b9;
+      border: none;
+    }
+
+    .panel-blue>.panel-heading .panel-title a:hover,
+    .panel-info>.panel-heading .panel-title a:hover {
+      color: #f0f0f0;
+    }
+
+    .panel-light-blue {
+      border: 1px solid #dddddd;
+    }
+
+    .panel-light-blue>.panel-heading {
+      color: #fff;
+      background-color: #3498db;
+      border: none;
+    }
+
+    .panel-light-blue>.panel-heading .panel-title a:hover {
+      color: #f0f0f0;
+    }
+
+    .panel-green,
+    .panel-success {
+      border: 1px solid #dddddd;
+    }
+
+    .panel-green>.panel-heading,
+    .panel-success>.panel-heading {
+      color: #fff;
+      background-color: #27ae60;
+      border: none;
+    }
+
+    .panel-green>.panel-heading .panel-title a:hover,
+    .panel-success>.panel-heading .panel-title a:hover {
+      color: #f0f0f0;
+    }
+
+    .panel-light-green {
+      border: 1px solid #dddddd;
+    }
+
+    .panel-light-green>.panel-heading {
+      color: #fff;
+      background-color: #2ecc71;
+      border: none;
+    }
+
+    .panel-light-green>.panel-heading .panel-title a:hover {
+      color: #f0f0f0;
+    }
+
+    .panel-orange,
+    .panel-warning {
+      border: 1px solid #dddddd;
+    }
+
+    .panel-orange>.panel-heading,
+    .panel-warning>.panel-heading {
+      color: #fff;
+      background-color: #e82c0c;
+      border: none;
+    }
+
+    .panel-orange>.panel-heading .panel-title a:hover,
+    .panel-warning>.panel-heading .panel-title a:hover {
+      color: #f0f0f0;
+    }
+
+    .panel-light-orange {
+      border: 1px solid #dddddd;
+    }
+
+    .panel-light-orange>.panel-heading {
+      color: #fff;
+      background-color: #ff530d;
+      border: none;
+    }
+
+    .panel-light-orange>.panel-heading .panel-title a:hover {
+      color: #f0f0f0;
+    }
+
+    .panel-red,
+    .panel-danger {
+      border: 1px solid #dddddd;
+    }
+
+    .panel-red>.panel-heading,
+    .panel-danger>.panel-heading {
+      color: #fff;
+      background-color: #d40d12;
+      border: none;
+    }
+
+    .panel-red>.panel-heading .panel-title a:hover,
+    .panel-danger>.panel-heading .panel-title a:hover {
+      color: #f0f0f0;
+    }
+
+    .panel-light-red {
+      border: 1px solid #dddddd;
+    }
+
+    .panel-light-red>.panel-heading {
+      color: #fff;
+      background-color: #ff1d23;
+      border: none;
+    }
+
+    .panel-light-red>.panel-heading .panel-title a:hover {
+      color: #f0f0f0;
+    }
+
+    .panel-pink {
+      border: 1px solid #dddddd;
+    }
+
+    .panel-pink>.panel-heading {
+      color: #fff;
+      background-color: #fe31ab;
+      border: none;
+    }
+
+    .panel-pink>.panel-heading .panel-title a:hover {
+      color: #f0f0f0;
+    }
+
+    .panel-light-pink {
+      border: 1px solid #dddddd;
+    }
+
+    .panel-light-pink>.panel-heading {
+      color: #fff;
+      background-color: #fd32c0;
+      border: none;
+    }
+
+    .panel-light-pink>.panel-heading .panel-title a:hover {
+      color: #f0f0f0;
+    }
+
+    .panel-group .panel {
+      border-radius: 0;
+    }
+
+    .panel-group .panel+.panel {
+      margin-top: 0;
+      border-top: 0;
+    }
+
+    .bg-blue,
+    .bg-info {
+      background-color: #2980b9 !important;
+    }
+
+    .bg-light-blue {
+      background-color: #3498db !important;
+    }
+
+    .bg-red,
+    .bg-danger {
+      background-color: #d40d12 !important;
+    }
+
+    .bg-light-red {
+      background-color: #ff1d23 !important;
+    }
+
+    .bg-purple {
+      background-color: #8e44ad !important;
+    }
+
+    .bg-light-purple {
+      background-color: #9b59b6 !important;
+    }
+
+    .bg-green,
+    bg-success {
+      background-color: #27ae60 !important;
+    }
+
+    .bg-light-green {
+      background-color: #2ecc71 !important;
+    }
+
+    .bg-orange,
+    .bg-warning {
+      background-color: #e82c0c !important;
+    }
+
+    .bg-light-orange {
+      background-color: #ff530d !important;
+    }
+
+    .bg-pink {
+      background-color: #fe31ab !important;
+    }
+
+    .bg-light-pink {
+      background-color: #fd32c0 !important;
+    }
+
+    .color-white {
+      color: white !important;
+    }
+
+    .color-green,
+    .text-success {
+      color: #27ae60 !important;
+    }
+
+    .color-light-green {
+      color: #2ecc71 !important;
+    }
+
+    .color-blue,
+    .text-info {
+      color: #2980b9 !important;
+    }
+
+    .color-light-blue {
+      color: #3498db !important;
+    }
+
+    .color-orange,
+    .text-warning {
+      color: #e82c0c !important;
+    }
+
+    .color-light-orange {
+      color: #ff530d !important;
+    }
+
+    .color-red,
+    .text-danger {
+      color: #d40d12 !important;
+    }
+
+    .color-light-red {
+      color: #ff1d23 !important;
+    }
+
+    .color-purple {
+      color: #8e44ad !important;
+    }
+
+    .color-light-purple {
+      color: #9b59b6 !important;
+    }
+
+    .color-pink {
+      color: #fe31ab !important;
+    }
+
+    .color-light-pink {
+      color: #fd32c0 !important;
+    }
+
+    .border-green {
+      border: 4px solid #27ae60 !important;
+    }
+
+    .border-light-green {
+      border: 4px solid #2ecc71 !important;
+    }
+
+    .border-blue {
+      border: 4px solid #2980b9 !important;
+    }
+
+    .border-light-blue {
+      border: 4px solid #3498db !important;
+    }
+
+    .border-orange {
+      border: 4px solid #e82c0c !important;
+    }
+
+    .border-light-orange {
+      border: 4px solid #ff530d !important;
+    }
+
+    .border-red {
+      border: 4px solid #d40d12 !important;
+    }
+
+    .border-light-red {
+      border: 4px solid #ff1d23 !important;
+    }
+
+    .border-purple {
+      border: 4px solid #8e44ad !important;
+    }
+
+    .border-light-purple {
+      border: 4px solid #9b59b6 !important;
+    }
+
+    .border-pink {
+      border: 4px solid #fe31ab !important;
+    }
+
+    .border-light-pink {
+      border: 4px solid #fd32c0 !important;
+    }
+
+    .border-top-green {
+      border-top: 4px solid #27ae60 !important;
+    }
+
+    .border-top-light-green {
+      border-top: 4px solid #2ecc71 !important;
+    }
+
+    .border-top-blue {
+      border-top: 4px solid #2980b9 !important;
+    }
+
+    .border-top-light-blue {
+      border-top: 4px solid #3498db !important;
+    }
+
+    .border-top-orange {
+      border-top: 4px solid #e82c0c !important;
+    }
+
+    .border-top-light-orange {
+      border-top: 4px solid #ff530d !important;
+    }
+
+    .border-top-red {
+      border-top: 4px solid #d40d12 !important;
+    }
+
+    .border-top-light-red {
+      border-top: 4px solid #ff1d23 !important;
+    }
+
+    .border-top-purple {
+      border-top: 4px solid #8e44ad !important;
+    }
+
+    .border-top-light-purple {
+      border-top: 4px solid #9b59b6 !important;
+    }
+
+    .border-top-pink {
+      border-top: 4px solid #fe31ab !important;
+    }
+
+    .border-top-light-pink {
+      border-top: 4px solid #fd32c0 !important;
+    }
+
+    .border-right-green {
+      border-right: 4px solid #27ae60 !important;
+    }
+
+    .border-right-light-green {
+      border-right: 4px solid #2ecc71 !important;
+    }
+
+    .border-right-blue {
+      border-right: 4px solid #2980b9 !important;
+    }
+
+    .border-right-light-blue {
+      border-right: 4px solid #3498db !important;
+    }
+
+    .border-right-orange {
+      border-right: 4px solid #e82c0c !important;
+    }
+
+    .border-right-light-orange {
+      border-right: 4px solid #ff530d !important;
+    }
+
+    .border-right-red {
+      border-right: 4px solid #d40d12 !important;
+    }
+
+    .border-right-light-red {
+      border-right: 4px solid #ff1d23 !important;
+    }
+
+    .border-right-purple {
+      border-right: 4px solid #8e44ad !important;
+    }
+
+    .border-right-light-purple {
+      border-right: 4px solid #9b59b6 !important;
+    }
+
+    .border-right-pink {
+      border-right: 4px solid #fe31ab !important;
+    }
+
+    .border-right-light-pink {
+      border-right: 4px solid #fd32c0 !important;
+    }
+
+    .border-bottom-green {
+      border-bottom: 4px solid #27ae60 !important;
+    }
+
+    .border-bottom-light-green {
+      border-bottom: 4px solid #2ecc71 !important;
+    }
+
+    .border-bottom-blue {
+      border-bottom: 4px solid #2980b9 !important;
+    }
+
+    .border-bottom-light-blue {
+      border-bottom: 4px solid #3498db !important;
+    }
+
+    .border-bottom-orange {
+      border-bottom: 4px solid #e82c0c !important;
+    }
+
+    .border-bottom-light-orange {
+      border-bottom: 4px solid #ff530d !important;
+    }
+
+    .border-bottom-red {
+      border-bottom: 4px solid #d40d12 !important;
+    }
+
+    .border-bottom-light-red {
+      border-bottom: 4px solid #ff1d23 !important;
+    }
+
+    .border-bottom-purple {
+      border-bottom: 4px solid #8e44ad !important;
+    }
+
+    .border-bottom-light-purple {
+      border-bottom: 4px solid #9b59b6 !important;
+    }
+
+    .border-bottom-pink {
+      border-bottom: 4px solid #fe31ab !important;
+    }
+
+    .border-bottom-light-pink {
+      border-bottom: 4px solid #fd32c0 !important;
+    }
+
+    .border-left-green {
+      border-left: 4px solid #27ae60 !important;
+    }
+
+    .border-left-light-green {
+      border-left: 4px solid #2ecc71 !important;
+    }
+
+    .border-left-blue {
+      border-left: 4px solid #2980b9 !important;
+    }
+
+    .border-left-light-blue {
+      border-left: 4px solid #3498db !important;
+    }
+
+    .border-left-orange {
+      border-left: 4px solid #e82c0c !important;
+    }
+
+    .border-left-light-orange {
+      border-left: 4px solid #ff530d !important;
+    }
+
+    .border-left-red {
+      border-left: 4px solid #d40d12 !important;
+    }
+
+    .border-left-light-red {
+      border-left: 4px solid #ff1d23 !important;
+    }
+
+    .border-left-purple {
+      border-left: 4px solid #8e44ad !important;
+    }
+
+    .border-left-light-purple {
+      border-left: 4px solid #9b59b6 !important;
+    }
+
+    .border-left-pink {
+      border-left: 4px solid #fe31ab !important;
+    }
+
+    .border-left-light-pink {
+      border-left: 4px solid #fd32c0 !important;
+    }
+
+    .bg2 {
+      background-image: url('https://img.freepik.com/premium-photo/multiple-shopping-cards-icons-light-blue-background-with-blank-space-right-internet-shop-purchase-concept-3d-rendering-mock-up_670147-75054.jpg');
+    }
+
+
+
+
+    .btn-blue {
+      background-color: #3498db;
+      border-color: #3498db;
+      color: white;
+    }
+
+    .btn-blue:hover,
+    .btn-blue:visited {
+      background-color: #2980b9;
+      color: white;
+    }
+
+    .btn-green {
+      background-color: #2ecc71;
+      border-color: #27ae60;
+      color: white;
+    }
+
+    .btn-green:hover,
+    .btn-green:visited {
+      background-color: #27ae60;
+      color: white;
+    }
+
+    .btn-orange {
+      background-color: #ff530d;
+      border-color: #e82c0c;
+      color: white;
+    }
+
+    .btn-orange:hover,
+    .btn-orange:visited {
+      background-color: #e82c0c;
+      color: white;
+    }
+
+    .btn-red {
+      background-color: #ff1d23;
+      border-color: #d40d12;
+      color: white;
+    }
+
+    .btn-red:hover,
+    .btn-red:visited {
+      background-color: #d40d12;
+      color: white;
+    }
+
+    .btn-purple {
+      background-color: #9b59b6;
+      border-color: #8e44ad;
+      color: white;
+    }
+
+    .btn-purple:hover,
+    .btn-purple:visited {
+      background-color: #8e44ad;
+      color: white;
+    }
+
+    .btn-pink {
+      background-color: #fd32c0;
+      border-color: #fe31ab;
+      color: white;
+    }
+
+    .btn-pink:hover,
+    .btn-pink:visited {
+      background-color: #fe31ab;
+      color: white;
+    }
+
+    .progress.progress-xs {
+      height: 12px;
+    }
+
     .admin-wrapper {
       margin-left: 35%;
       margin-top: 10%;
     }
+
 
     body {
       background-color: #f8f9fa !important
@@ -283,12 +1073,11 @@
     }
 
     .outer-container {
-      margin-top: 70px;
-      background: #ffffff;
+
       display: flex;
       flex-direction: column;
-      border: 1px solid #eeeeee;
-      padding: 60px;
+
+      padding: 10px;
       transition: all 0.3s ease-in-out;
       width: 60%;
       align-self: center;
@@ -296,11 +1085,7 @@
       border-radius: 30px;
     }
 
-    .outer-container:hover {
-      box-shadow: 0px 0px 34px 4px rgba(33, 37, 41, 0.06);
-      position: relative;
-      z-index: 99;
-    }
+
 
     .inner-container {
       width: 90%;
@@ -315,105 +1100,6 @@
       margin-left: 50px;
       max-height: 1000px;
       /* Adjust this value to provide spacing between outer and inner containers */
-    }
-
-    #delete-form-container h1 {
-      margin-bottom: 50px;
-
-      /* Center the heading */
-    }
-
-    #delete-form {
-      display: flex;
-      flex-direction: column;
-    }
-
-    #delete-form label {
-      margin-bottom: 10px;
-      font-size: 16px;
-      margin-left: 30px;
-      margin-top: 20px;
-    }
-
-    #delete-form select,
-    #delete-form input {
-      padding: 10px;
-      margin-bottom: 20px;
-      border: 1px solid #ced4da;
-      border-radius: 4px;
-      width: 80%;
-      margin-left: 30px;
-      margin-top: 20px;
-      /* Full width inside the inner container */
-    }
-
-    #delete-form button {
-      padding: 10px;
-      background-color: #007bff;
-      color: #ffffff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s ease-in-out;
-      max-width: 150px;
-      margin-right: 10px;
-      align-self: flex-end;
-    }
-
-    #delete-form button:hover {
-      background-color: #0056b3;
-    }
-
-
-
-    #update-form-admin-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      /* Adjust if needed */
-    }
-
-
-    #update-form-admin h2 {
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    #update-form label {
-      margin-bottom: 10px;
-      font-size: 16px;
-      margin-left: 30px;
-      margin-top: 5px;
-      display: block;
-      /* Display each label on a new line */
-    }
-
-    #update-form select,
-    #update-form input {
-      padding: 10px;
-      margin-bottom: 20px;
-      border: 1px solid #ced4da;
-      border-radius: 4px;
-      width: 80%;
-      margin-left: 30px;
-      margin-top: 5px;
-      /* Adjust the margin for spacing between input fields */
-      display: block;
-      /* Display each input field on a new line */
-    }
-
-    #update-form button {
-      padding: 10px;
-      background-color: #007bff;
-      color: #ffffff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s ease-in-out;
-      max-width: 150px;
-      margin-left: 550px;
-      /* Adjust the margin for spacing between button and input fields*/
     }
   </style>
   <link rel="stylesheet" href="./style.css">
@@ -530,38 +1216,54 @@
         <li class="menu-item">
           <a href="./listusers/index.html" class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-message-outline"></i>
-            <div data-i18n="Chat">Chat</div>
+            <div data-i18n="Chat" style="cursor: pointer;">Chat</div>
 
           </a>
         </li>
+
         <li class="menu-item">
           <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-calendar.html"
             class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-calendar-blank-outline"></i>
-            <div data-i18n="Calendar">Calendar</div>
+            <div data-i18n="Calendar" style="cursor: pointer;">Calendar</div>
 
           </a>
         </li>
 
         <!-- Pages -->
         <li class="menu-item">
-          <a onclick="DisplayListUsers()" class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
-            <div data-i18n="Account Settings">Customer</div>
+          <a onclick="DisplayFeedBacks()" class="menu-link">
+            <i class="menu-icon tf-icons mdi  mdi-comment-outline"></i>
+            <div data-i18n="Account Settings" style="cursor: pointer;">Feedbacks</div>
           </a>
 
         </li>
         <li class="menu-item">
-          <a onclick="DisplayListSeller()" class="menu-link">
+          <a onclick="DisplayListUsers()" class="menu-link">
+            <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
+            <div data-i18n="Account Settings" style="cursor: pointer;">Customer</div>
+          </a>
+
+        </li>
+        <li class="menu-item">
+          <a onclick="DisplayListSeller();" class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-lock-open-outline"></i>
-            <div data-i18n="Authentications">Seller</div>
+            <div data-i18n="Authentications" style="cursor: pointer;">Seller</div>
           </a>
 
         </li>
         <li class="menu-item">
           <a onclick="DisplayListInventory()" class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-cube-outline"></i>
-            <div data-i18n="Misc">Inventory</div>
+            <div data-i18n="Misc" style="cursor: pointer;">Inventory</div>
+          </a>
+
+        </li>
+
+        <li class="menu-item">
+          <a onclick="DisplayAllWorkers()" class="menu-link">
+            <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
+            <div data-i18n="Misc" style="cursor: pointer;">Workers</div>
           </a>
 
         </li>
@@ -571,7 +1273,7 @@
         <li class="menu-item">
           <a onclick="DisplayEdit()" class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-pencil-outline"></i>
-            <div data-i18n="Extended UI">Edit</div>
+            <div data-i18n="Extended UI" style="cursor: pointer;">Edit</div>
           </a>
 
         </li>
@@ -580,23 +1282,25 @@
         <!-- Form Validation -->
         <li class="menu-item">
           <a onclick="Deletedata()" class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-delete"></i>
-            <div data-i18n="Form Validation">Delete</div>
+            <i class="menu-icon tf-icons mdi mdi-delete-outline"></i>
+            <div data-i18n="Form Validation" style="cursor: pointer;">Delete</div>
 
           </a>
         </li>
+
+
         <!-- Tables -->
         <li class="menu-item" onclick="CreateSeller()">
           <a class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
-            <div data-i18n="Tables">Create Seller</div>
+            <i class="menu-icon tf-icons mdi mdi-account"></i>
+            <div data-i18n="Tables" style="cursor: pointer;">Create Seller</div>
           </a>
         </li>
         <!-- Data Tables -->
         <li class="menu-item" onclick="CreateWorker()">
           <a class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-account"></i>
-            <div data-i18n="Datatables">Create Employee</div>
+            <div data-i18n="Datatables" style="cursor: pointer;">Create Employee</div>
 
           </a>
         </li>
@@ -604,7 +1308,7 @@
         <li class="menu-item" onclick="DisplayCreateAdmin()">
           <a class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-account"></i>
-            <div data-i18n="Datatables">Create Admin</div>
+            <div data-i18n="Datatables" style="cursor: pointer;">Create Admin</div>
 
           </a>
         </li>
@@ -632,8 +1336,8 @@
             <div class="navbar-nav align-items-center">
               <div class="nav-item d-flex align-items-center">
                 <i class="mdi mdi-magnify mdi-24px lh-0"></i>
-                <input type="text" class="form-control border-0 shadow-none bg-body" placeholder="Search..."
-                  aria-label="Search..." />
+                <input type="text" onkeyup="search()" id="Search" class="form-control border-0 shadow-none bg-body"
+                  placeholder="Search..." aria-label="Search..." />
               </div>
             </div>
             <!-- /Search -->
@@ -711,7 +1415,7 @@
                     <h4 class="card-title mb-1 admin-target"></h4>
                     <p class="pb-0">Target of the month</p>
                     <h4 class="text-primary mb-1">&#8377; 10,000</h4>
-                    <p class="mb-2 pb-1 target-persentage">78% of target 🚀</p>
+                    <p class="mb-2 pb-1 target-persentage">0% of target 🚀</p>
                   </div>
                   <img src="./assets/img/icons/misc/triangle-light.png"
                     class="scaleX-n1-rtl position-absolute bottom-0 end-0" width="166" alt="triangle background"
@@ -740,7 +1444,7 @@
                         </div>
                       </div>
                     </div>
-                    <p class="mt-3"><span class="fw-medium total-growth">Total 48.5% growth</span> 😎 </p>
+                    <p class="mt-3"><span class="fw-medium total-growth">Total 0% growth</span> 😎 </p>
                   </div>
                   <div class="card-body" id="printableContent">
                     <div class="row g-3">
@@ -753,7 +1457,7 @@
                           </div>
                           <div class="ms-3">
                             <div class="small mb-1">Sales</div>
-                            <h5 class="mb-0 sales-count">245k</h5>
+                            <h5 class="mb-0 sales-count">0k</h5>
                           </div>
                         </div>
                       </div>
@@ -766,7 +1470,7 @@
                           </div>
                           <div class="ms-3">
                             <div class="small mb-1">Customers</div>
-                            <h5 class="mb-0 customer-count">12.5k</h5>
+                            <h5 class="mb-0 customer-count">0k</h5>
                           </div>
                         </div>
                       </div>
@@ -779,7 +1483,7 @@
                           </div>
                           <div class="ms-3">
                             <div class="small mb-1">Product</div>
-                            <h5 class="mb-0 product-count">1.54k</h5>
+                            <h5 class="mb-0 product-count">0k</h5>
                           </div>
                         </div>
                       </div>
@@ -792,7 +1496,7 @@
                           </div>
                           <div class="ms-3">
                             <div class="small mb-1">Seller</div>
-                            <h5 class="mb-0 seller-count">12.5k</h5>
+                            <h5 class="mb-0 seller-count">0k</h5>
                           </div>
                         </div>
                       </div>
@@ -820,39 +1524,8 @@
                   <div class="card-body">
 
                     <ul class="p-0 m-0 js-seller-data">
-                      <li class="d-flex mb-4 pb-md-2">
-                        <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                          <div class="me-2">
-                            <h6 class="mb-0">Zipcar</h6>
-                            <small>Vuejs, React & HTML</small>
-                          </div>
-                          <div>
-                            <h6 class="mb-2">$24,895.65</h6>
-                          </div>
-                      </li>
-                      <ul class="p-0 m-0">
-                        <li class="d-flex mb-4 pb-md-2">
-                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                            <div class="me-2">
-                              <h6 class="mb-0">Zipcar</h6>
-                              <small>Vuejs, React & HTML</small>
-                            </div>
-                            <div>
-                              <h6 class="mb-2">$24,895.65</h6>
-                            </div>
-                        </li>
-                        <ul class="p-0 m-0">
-                          <li class="d-flex mb-4 pb-md-2">
-                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                              <div class="me-2">
-                                <h6 class="mb-0">Zipcar</h6>
-                                <small>Vuejs, React & HTML</small>
-                              </div>
-                              <div>
-                                <h6 class="mb-2">$24,895.65</h6>
-                              </div>
-                          </li>
-                        </ul>
+
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -869,7 +1542,7 @@
                   <div class="col-sm-6">
                     <div class="card h-100">
                       <div class="card-header pb-0">
-                        <h4 class="mb-0 total-sales-profit">$86.4k</h4>
+                        <h4 class="mb-0 total-sales-profit">$0k</h4>
                       </div>
                       <div class="card-body">
                         <div id="totalProfitLineChart" class="mb-3"></div>
@@ -900,8 +1573,8 @@
                       <div class="card-body mt-mg-1">
                         <h6 class="mb-2">Total Profit</h6>
                         <div class="d-flex flex-wrap align-items-center mb-2 pb-1">
-                          <h4 class="mb-0 me-2 profit">$25.6k</h4>
-                          <small class="text-success mt-1 profit-persent">+42%</small>
+                          <h4 class="mb-0 me-2 profit">$0k</h4>
+                          <small class="text-success mt-1 profit-persent">+0%</small>
                         </div>
                         <small>Weekly Project</small>
                       </div>
@@ -935,39 +1608,9 @@
                   <div class="card-body">
 
                     <ul class="p-0 m-0 js-feedback-data">
-                      <li class="d-flex mb-4 pb-md-2">
-                        <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                          <div class="me-2">
-                            <h6 class="mb-0">Zipcar</h6>
-                            <small>Vuejs, React & HTML</small>
-                          </div>
-                          <div>
-                            <h6 class="mb-2">$24,895.65</h6>
-                          </div>
-                      </li>
-                      <ul class="p-0 m-0">
-                        <li class="d-flex mb-4 pb-md-2">
-                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                            <div class="me-2">
-                              <h6 class="mb-0">Zipcar</h6>
-                              <small>Vuejs, React & HTML</small>
-                            </div>
-                            <div>
-                              <h6 class="mb-2">$24,895.65</h6>
-                            </div>
-                        </li>
-                        <ul class="p-0 m-0">
-                          <li class="d-flex mb-4 pb-md-2">
-                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                              <div class="me-2">
-                                <h6 class="mb-0">Zipcar</h6>
-                                <small>Vuejs, React & HTML</small>
-                              </div>
-                              <div>
-                                <h6 class="mb-2">$24,895.65</h6>
-                              </div>
-                          </li>
-                        </ul>
+
+
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -992,165 +1635,7 @@
                         </tr>
                       </thead>
                       <tbody class="js-workers">
-                        <tr>
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <div class="avatar avatar-sm me-3">
-                                <img src="./assets/img/avatars/1.png" alt="Avatar" class="rounded-circle" />
-                              </div>
-                              <div>
-                                <h6 class="mb-0 text-truncate">Jordan Stevenson</h6>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="text-truncate">susanna.Lind57@gmail.com</td>
-                          <td class="text-truncate">
-                            <i class="mdi mdi-laptop mdi-24px text-danger me-1"></i> Admin
-                          </td>
-                          <td class="text-truncate">24</td>
-                          <td class="text-truncate">34500$</td>
-                          <td><span class="badge bg-label-warning rounded-pill">Pending</span></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <div class="avatar avatar-sm me-3">
-                                <img src="./assets/img/avatars/3.png" alt="Avatar" class="rounded-circle" />
-                              </div>
-                              <div>
-                                <h6 class="mb-0 text-truncate">Benedetto Rossiter</h6>
-                                <small class="text-truncate">@brossiter15</small>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="text-truncate">estelle.Bailey10@gmail.com</td>
-                          <td class="text-truncate">
-                            <i class="mdi mdi-pencil-outline text-info mdi-24px me-1"></i> Editor
-                          </td>
-                          <td class="text-truncate">29</td>
-                          <td class="text-truncate">64500$</td>
-                          <td><span class="badge bg-label-success rounded-pill">Active</span></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <div class="avatar avatar-sm me-3">
-                                <img src="./assets/img/avatars/2.png" alt="Avatar" class="rounded-circle" />
-                              </div>
-                              <div>
-                                <h6 class="mb-0 text-truncate">Bentlee Emblin</h6>
-                                <small class="text-truncate">@bemblinf</small>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="text-truncate">milo86@hotmail.com</td>
-                          <td class="text-truncate">
-                            <i class="mdi mdi-cog-outline text-warning mdi-24px me-1"></i> Author
-                          </td>
-                          <td class="text-truncate">44</td>
-                          <td class="text-truncate">94500$</td>
-                          <td><span class="badge bg-label-success rounded-pill">Active</span></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <div class="avatar avatar-sm me-3">
-                                <img src="./assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-                              </div>
-                              <div>
-                                <h6 class="mb-0 text-truncate">Bertha Biner</h6>
-                                <small class="text-truncate">@bbinerh</small>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="text-truncate">lonnie35@hotmail.com</td>
-                          <td class="text-truncate">
-                            <i class="mdi mdi-pencil-outline text-info mdi-24px me-1"></i> Editor
-                          </td>
-                          <td class="text-truncate">19</td>
-                          <td class="text-truncate">4500$</td>
-                          <td><span class="badge bg-label-warning rounded-pill">Pending</span></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <div class="avatar avatar-sm me-3">
-                                <img src="./assets/img/avatars/4.png" alt="Avatar" class="rounded-circle" />
-                              </div>
-                              <div>
-                                <h6 class="mb-0 text-truncate">Beverlie Krabbe</h6>
-                                <small class="text-truncate">@bkrabbe1d</small>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="text-truncate">ahmad_Collins@yahoo.com</td>
-                          <td class="text-truncate">
-                            <i class="mdi mdi-chart-donut mdi-24px text-success me-1"></i> Maintainer
-                          </td>
-                          <td class="text-truncate">22</td>
-                          <td class="text-truncate">10500$</td>
-                          <td><span class="badge bg-label-success rounded-pill">Active</span></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <div class="avatar avatar-sm me-3">
-                                <img src="./assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
-                              </div>
-                              <div>
-                                <h6 class="mb-0 text-truncate">Bradan Rosebotham</h6>
-                                <small class="text-truncate">@brosebothamz</small>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="text-truncate">tillman.Gleason68@hotmail.com</td>
-                          <td class="text-truncate">
-                            <i class="mdi mdi-pencil-outline text-info mdi-24px me-1"></i> Editor
-                          </td>
-                          <td class="text-truncate">50</td>
-                          <td class="text-truncate">99500$</td>
-                          <td><span class="badge bg-label-warning rounded-pill">Pending</span></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <div class="avatar avatar-sm me-3">
-                                <img src="./assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
-                              </div>
-                              <div>
-                                <h6 class="mb-0 text-truncate">Bree Kilday</h6>
-                                <small class="text-truncate">@bkildayr</small>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="text-truncate">otho21@gmail.com</td>
-                          <td class="text-truncate">
-                            <i class="mdi mdi-account-outline mdi-24px text-primary me-1"></i> Subscriber
-                          </td>
-                          <td class="text-truncate">23</td>
-                          <td class="text-truncate">23500$</td>
-                          <td><span class="badge bg-label-success rounded-pill">Active</span></td>
-                        </tr>
-                        <tr class="border-transparent">
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <div class="avatar avatar-sm me-3">
-                                <img src="./assets/img/avatars/1.png" alt="Avatar" class="rounded-circle" />
-                              </div>
-                              <div>
-                                <h6 class="mb-0 text-truncate">Breena Gallemore</h6>
-                                <small class="text-truncate">@bgallemore6</small>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="text-truncate">florencio.Little@hotmail.com</td>
-                          <td class="text-truncate">
-                            <i class="mdi mdi-account-outline mdi-24px text-primary me-1"></i> Subscriber
-                          </td>
-                          <td class="text-truncate">33</td>
-                          <td class="text-truncate">20500$</td>
-                          <td><span class="badge bg-label-secondary rounded-pill">Inactive</span></td>
-                        </tr>
+
                       </tbody>
                     </table>
                   </div>
@@ -1179,43 +1664,6 @@
                           </tr>
                         </thead>
                         <tbody class="user-list-body">
-                          <tr class="candidates-list">
-                            <td class="title">
-                              <div class="thumb"> <img class="img-fluid"
-                                  src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
-                              </div>
-                              <div class="candidate-list-details">
-                                <div class="candidate-list-info">
-                                  <div class="candidate-list-title">
-                                    <h5 class="mb-0"><a href="#">Brooke Kelly</a></h5>
-                                  </div>
-                                  <div class="candidate-list-option">
-                                    <ul class="list-unstyled">
-                                      <li><i class="fas fa-filter pr-1"></i>Information Technology
-                                      </li>
-                                      <li><i class="fas fa-map-marker-alt pr-1"></i>Rolling
-                                        Meadows, IL 60008</li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
-                            </td>
-                            <td class="candidate-list-favourite-time text-center"> <a
-                                class="candidate-list-favourite order-2 text-danger" href="#"></a>
-                              <span class="candidate-list-time order-1">Shortlisted</span>
-                            </td>
-                            <td>
-                              <ul class="list-unstyled mb-0 d-flex justify-content-end">
-
-                                <li><a href="#" class="text-info" data-toggle="tooltip" title=""
-                                    data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                </li>
-                                <li><a href="#" class="text-danger" data-toggle="tooltip" title=""
-                                    data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
-                              </ul>
-                            </td>
-                          </tr>
-
                         </tbody>
                       </table>
 
@@ -1245,42 +1693,6 @@
                           </tr>
                         </thead>
                         <tbody class="seller-list-body">
-                          <tr class="candidates-list">
-                            <td class="title">
-                              <div class="thumb"> <img class="img-fluid"
-                                  src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
-                              </div>
-                              <div class="candidate-list-details">
-                                <div class="candidate-list-info">
-                                  <div class="candidate-list-title">
-                                    <h5 class="mb-0"><a href="#">Brooke Kelly</a></h5>
-                                  </div>
-                                  <div class="candidate-list-option">
-                                    <ul class="list-unstyled">
-                                      <li><i class="fas fa-filter pr-1"></i>Information Technology
-                                      </li>
-                                      <li><i class="fas fa-map-marker-alt pr-1"></i>Rolling
-                                        Meadows, IL 60008</li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
-                            </td>
-                            <td class="candidate-list-favourite-time text-center"> <a
-                                class="candidate-list-favourite order-2 text-danger" href="#"></a>
-                              <span class="candidate-list-time order-1">Shortlisted</span>
-                            </td>
-                            <td>
-                              <ul class="list-unstyled mb-0 d-flex justify-content-end">
-
-                                <li><a href="#" class="text-info" data-toggle="tooltip" title=""
-                                    data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                </li>
-                                <li><a href="#" class="text-danger" data-toggle="tooltip" title=""
-                                    data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
-                              </ul>
-                            </td>
-                          </tr>
 
                         </tbody>
                       </table>
@@ -1313,42 +1725,66 @@
                           </tr>
                         </thead>
                         <tbody class="inventory-list-body">
-                          <tr class="candidates-list">
-                            <td class="title">
-                              <div class="thumb"> <img class="img-fluid"
-                                  src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
-                              </div>
-                              <div class="candidate-list-details">
-                                <div class="candidate-list-info">
-                                  <div class="candidate-list-title">
-                                    <h5 class="mb-0"><a href="#">Brooke Kelly</a></h5>
-                                  </div>
-                                  <div class="candidate-list-option">
-                                    <ul class="list-unstyled">
-                                      <li><i class="fas fa-filter pr-1"></i>Information Technology
-                                      </li>
-                                      <li><i class="fas fa-map-marker-alt pr-1"></i>Rolling
-                                        Meadows, IL 60008</li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
-                            </td>
-                            <td class="candidate-list-favourite-time text-center"> <a
-                                class="candidate-list-favourite order-2 text-danger" href="#"></a>
-                              <span class="candidate-list-time order-1">Shortlisted</span>
-                            </td>
-                            <td>
-                              <ul class="list-unstyled mb-0 d-flex justify-content-end">
 
-                                <li><a href="#" class="text-info" data-toggle="tooltip" title=""
-                                    data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                </li>
-                                <li><a href="#" class="text-danger" data-toggle="tooltip" title=""
-                                    data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
-                              </ul>
-                            </td>
+                        </tbody>
+                      </table>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--FeedBack-->
+          <div id="feedbacksnip" style="display: none;">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+              integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous">
+            <div class="container mt-3 mb-4">
+              <div class="col-lg-9 mt-4 mt-lg-0">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
+                      <table class="table manage-candidates-top mb-0">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th class="text-center">Feedback</th>
+                            <th class="action text-right">Action</th>
                           </tr>
+                        </thead>
+                        <tbody class="feedback-list-body">
+
+                        </tbody>
+                      </table>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Worker-->
+          <div id="workersnip" style="display: none;">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+              integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous">
+            <div class="container mt-3 mb-4">
+              <div class="col-lg-9 mt-4 mt-lg-0">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
+                      <table class="table manage-candidates-top mb-0">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th class="text-center">Mobile No</th>
+                            <th class="action text-right">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody class="worker-list-body">
 
                         </tbody>
                       </table>
@@ -1362,26 +1798,66 @@
           <!--Delete-->
 
           <div id="delete-form-container" class="outer-container" style="display: none;">
-            <h3>Delete Data</h3>
+            <i class="fas fa-arrow-left back-icon" onclick="BackButton()"></i>
 
-            <form id="delete-form" style="margin-top: 50px;">
-              <label for="collection">Select Collection:</label>
-              <select id="collection" name="collection">
-                <option value="customer">Customer</option>
-                <option value="inventory">Inventory</option>
-                <option value="seller">Seller</option>
-              </select>
-              <label id="delete-by-label" for="id">Delete by:</label>
-              <input type="text" id="id" name="id" required>
-              <button type="submit">Delete Data</button>
-            </form>
+            <div class="limiter">
+              <div class="container-login100"
+                style="background-image: url('images/bg-01.jpg'); background-size: 80% 80%; margin-top: -110px;">
+
+                <form class="login100-form validate-form flex-sb flex-w" style="width: 500px; height: 500px;"
+                  id="delete-form">
+                  <span class="login100-form-title p-b-53" style="margin-top: -50px;">
+                    Delete
+                  </span>
+                  <div class="p-t-31 p-b-9" style="margin-top: -30px;">
+                    <span class="txt1">
+                      Select Collection:
+                    </span>
+                  </div>
+                  <div class="wrap-input100">
+                    <select id="collection" class="input100" name="collection">
+                      <option value="customer">Customer</option>
+                      <option value="inventory">Inventory</option>
+                      <option value="seller">Seller</option>
+                    </select>
+                    <span class="focus-input100"></span>
+                  </div>
+
+                  <div class="p-t-13 p-b-9">
+                    <span class="txt1">
+                      Delete by:
+                    </span>
+                  </div>
+                  <div class="wrap-input100 validate-input" data-validate="Password is required">
+                    <input class="input100" type="test" id="id" name="id">
+                    <span class="focus-input100"></span>
+                  </div>
+
+                  <div class="container-login100-form-btn m-t-17">
+                    <button class="login100-form-btn">
+                      Delete
+                    </button>
+                  </div>
+
+                  <div class="w-full text-center p-t-55">
+
+
+
+                  </div>
+                </form>
+              </div>
+
+            </div>
+
+
+            <div id="dropDownSelect1"></div>
 
           </div>
 
           <!--Edit Data-->
           <div id="update-form-admin-container" class="outer-container" style="display: none;">
+            <!-- <i class="fas fa-arrow-left back-icon" onclick="BackButton()"></i>
             <h3>Edit Data:</h3>
-
             <form id="update-form" style="margin-top: 30px;">
               <label for="updatecollection">Select Collection:</label>
               <select id="updatecollection" name="updatecollection" onchange="populateFieldOptions()">
@@ -1393,12 +1869,90 @@
               <input type="text" id="idname" name="idname" required><br>
               <label for="field">Field:</label>
               <select id="field" name="field">
-                <!-- Options will be dynamically updated based on the selected collection -->
+                
               </select>
               <label for="newvalue">New Value:</label>
               <input type="text" id="newvalue" name="newvalue" required><br>
               <button type="submit">Update</button>
-            </form>
+            </form> -->
+
+            <i class="fas fa-arrow-left back-icon" onclick="BackButton()"></i>
+
+            <div class="limiter">
+              <div class="container-login100"
+                style="background-image: url('images/bg-01.jpg'); background-size: 90% 82%; margin-top: -110px;">
+
+                <form class="login100-form validate-form flex-sb flex-w" style="width: 500px; height: 600px;"
+                  id="update-form">
+                  <span class="login100-form-title p-b-53" style="margin-top: -50px;">
+                    EDIT
+                  </span>
+                  <div class="p-t-31 p-b-9" style="margin-top: -55px;">
+                    <span class="txt1">
+                      Select Collection:
+                    </span>
+                  </div>
+                  <div class="wrap-input100">
+                    <select id="updatecollection" name="updatecollection" onchange="populateFieldOptions()"
+                      class="input100">
+                      <option value="customer">Customer</option>
+                      <option value="inventory">Inventory</option>
+                      <option value="seller">Seller</option>
+                    </select>
+                    <span class="focus-input100"></span>
+                  </div>
+
+                  <div class="p-t-31 p-b-9" style="margin-top: -30px;">
+                    <span class="txt1">
+                      Field To Update:
+                    </span>
+                  </div>
+                  <div class="wrap-input100">
+                    <select id="field" name="field" class="input100">
+                      <!-- Options will be dynamically updated based on the selected collection -->
+                    </select>
+
+                    <span class="focus-input100"></span>
+                  </div>
+
+                  <div class="p-t-13 p-b-9">
+                    <span class="txt1">
+                      Update by:
+                    </span>
+                  </div>
+                  <div class="wrap-input100">
+                    <input class="input100" type="text" id="idname" name="idname" required>
+                    <span class="focus-input100"></span>
+                  </div>
+                  <div class="p-t-13 p-b-9">
+                    <span class="txt1">
+                      New Value:
+                    </span>
+                  </div>
+                  <div class="wrap-input100">
+                    <input class="input100" id="newvalue" name="newvalue" required>
+                    <span class="focus-input100"></span>
+                  </div>
+
+                  <div class="container-login100-form-btn m-t-17">
+                    <button class="login100-form-btn" type="submit">
+                      Edit
+                    </button>
+                  </div>
+
+                  <div class="w-full text-center p-t-55">
+
+
+
+                  </div>
+                </form>
+              </div>
+
+            </div>
+
+
+            <div id="dropDownSelect1"></div>
+
           </div>
           <!--Register User-->
 
@@ -1503,40 +2057,60 @@
             <div class="inner">
               <img src="images/image-1.png" alt="" class="image-1">
               <form action="" id="admin-form">
-                <h3>Create Admin</h3>
-                <div class="form-holder">
-                  <span class="lnr lnr-user"></span>
-                  <input type="text" class="form-control" id="admin-name" placeholder="UserName" oninput="CreateEmailandPassword()"
-                    style="border-top: none;border-left: none;border-right: none; margin-left: 10px;outline: none;" required>
+                <div id="admin-input">
+                  <h3>Create Admin</h3>
+                  <div class="form-holder">
+                    <span class="lnr lnr-user"></span>
+                    <input type="text" class="form-control" id="admin-name" placeholder="UserName"
+                      oninput="CreateEmailandPassword()"
+                      style="border-top: none;border-left: none;border-right: none; margin-left: 10px;outline: none;"
+                      required>
+                  </div>
+                  <div class="form-holder">
+                    <span class="lnr lnr-user"></span>
+                    <input type="email" class="form-control" id="admin-email" placeholder="Email"
+                      style="border-top: none;border-left: none;border-right: none; margin-left: 10px;outline: none;"
+                      required>
+                  </div>
+                  <div class="form-holder">
+                    <span class="lnr lnr-lock"></span>
+                    <input type="password" class="form-control" id="admin-password" placeholder="Password"
+                      style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;"
+                      required>
+                  </div>
+                  <div class="form-holder">
+                    <span class="lnr lnr-lock"></span>
+                    <input type="password" class="form-control" id="admin-confirmpassword"
+                      placeholder="Confirm-Password"
+                      style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;"
+                      required>
+                  </div>
+                  <div class="form-holder">
+                    <span class="lnr lnr-location"></span>
+                    <input type="text" class="form-control" id="admin-ip" placeholder="IP"
+                      style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;"
+                      required>
+                  </div>
+                  <button type="submit">
+                    <span>Create</span>
+                  </button>
                 </div>
-                <div class="form-holder">
-                  <span class="lnr lnr-user"></span>
-                  <input type="email" class="form-control" id="admin-email" placeholder="Email"
-                    style="border-top: none;border-left: none;border-right: none; margin-left: 10px;outline: none;" required>
+                <div style="display: none;" id="qr-code">
+                  <div id="qrcode"></div>
+                  <h9 class="totp" style="margin-top: 20px;"></h9>
                 </div>
-                <div class="form-holder">
-                  <span class="lnr lnr-lock"></span>
-                  <input type="password" class="form-control" id="admin-password" placeholder="Password"
-                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;" required>
-                </div>
-                <div class="form-holder">
-                  <span class="lnr lnr-lock"></span>
-                  <input type="password" class="form-control" id="admin-confirmpassword" placeholder="Confirm-Password"
-                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;" required>
-                </div>
-                <div class="form-holder">
-                  <span class="lnr lnr-location"></span>
-                  <input type="text" class="form-control" id="admin-ip" placeholder="IP"
-                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;" required>
-                </div>
-                <button type="submit">
-                  <span>Create</span>
-                </button>
               </form>
+
+
               <img src="images/image-2.png" alt="" class="image-2">
             </div>
 
           </div>
+
+          <div class="display-view" style="display: block;">
+
+          </div>
+
 
 
 
@@ -1563,6 +2137,8 @@
 
   <!-- Core JS -->
   <!-- build:js assets/vendor/js/core.js -->
+  <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+
   <script src="./assets/vendor/libs/jquery/jquery.js"></script>
   <script src="./assets/vendor/libs/popper/popper.js"></script>
   <script src="./assets/vendor/js/bootstrap.js"></script>
@@ -1585,6 +2161,22 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <script src="./script.js"></script>
   <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/main.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/animsition/js/animsition.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/bootstrap/js/popper.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/select2/select2.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/daterangepicker/moment.min.js"></script>
+  <script src="vendor/daterangepicker/daterangepicker.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/countdowntime/countdowntime.js"></script>
+  <!--===============================================================================================-->
   <script src="js/main.js"></script>
 </body>
 
